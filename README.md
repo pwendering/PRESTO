@@ -10,7 +10,7 @@
 * [COBRA toolbox 3.0](https://github.com/opencobra/cobratoolbox)
 * [RAVEN toolbox 2.0](https://github.com/SysBioChalmers/RAVEN)
 * [Gurobi solver](https://www.gurobi.com/) (tested with version 9.1.1)
-* 
+
 ## Setup
 * Set up the COBRA toolbox following the [installation instructions](https://opencobra.github.io/cobratoolbox/stable/installation.html)
 * Set up the RAVEN toolbox following the [installation instructions](https://github.com/SysBioChalmers/RAVEN/wiki/Installation#installation)
