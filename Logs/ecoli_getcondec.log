@@ -1,0 +1,3886 @@
+Reading experimental data from file...
+[Warning: Column headers from the file were modified to make them valid MATLAB identifiers before creating variable names for
+the table. The original column headers are saved in the VariableDescriptions property.
+Set 'PreserveVariableNames' to true to use the original column headers as table variable names.] 
+[Warning: Column headers from the file were modified to make them valid MATLAB identifiers before creating variable names for
+the table. The original column headers are saved in the VariableDescriptions property.
+Set 'PreserveVariableNames' to true to use the original column headers as table variable names.] 
+
+tmp_idx =
+
+    12
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_35_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-43.5173%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-29.5591%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-22.8812%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-14.8047%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-4.8386%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.52
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_35_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_35_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_35_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_35_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    30
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_FRU_BATCH_mu_0_65_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-69.5862%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-62.0703%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-58.4745%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-54.1256%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-48.7592%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-41.971%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-33.6333%
+*Iteration #8
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2240 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexadecanoyl-CoA) (No1)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13412 Err:-24.722%
+*Iteration #9
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2173 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxotetradecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.15492 Err:-13.0463%
+*Iteration #10
+ Automatic search // EC#: 2.3.1.30
+  Protein:P0A9D4 Rxn#:2514 name: Serine O-acetyltransferase (No1)
+  prev_Kcat:0.067999 new_Kcat:2333.3333 CC:0.18108 Err:2.7177%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.49
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_FRU_BATCH_mu_0_65_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_FRU_BATCH_mu_0_65_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_FRU_BATCH_mu_0_65_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_FRU_BATCH_mu_0_65_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    15
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_PYR_BATCH_mu_0_40_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-50.5776%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-38.3642%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-32.5211%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-25.4541%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-16.7337%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-5.7029%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.53
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_PYR_BATCH_mu_0_40_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_PYR_BATCH_mu_0_40_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_PYR_BATCH_mu_0_40_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_PYR_BATCH_mu_0_40_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    11
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_31_V1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-36.2292%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-20.4699%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-12.9304%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-3.8118%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.52
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_31_V_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_31_V_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_31_V_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_31_V'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+     6
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_22_P1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-10.1412%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:12.0651%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.45
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_22_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_22_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_22_P_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_22_P'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+     3
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_20_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-1.1553%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.51
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_20_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_20_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_20_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_20_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+     7
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_26_P1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-23.9656%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-5.1757%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.53
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_26_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_26_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_26_P_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_26_P'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    24
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_50_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-60.4621%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-50.6914%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-46.0169%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-40.3633%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-33.387%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-24.5623%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-13.7233%
+*Iteration #8
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2240 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexadecanoyl-CoA) (No1)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13412 Err:-2.1386%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.51
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_50_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_50_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_50_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_50_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    22
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_MAN_BATCH_mu_0_47_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-57.9384%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-47.544%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-42.5711%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-36.5567%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-29.1351%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-19.7471%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-8.2163%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.54
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_MAN_BATCH_mu_0_47_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_MAN_BATCH_mu_0_47_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_MAN_BATCH_mu_0_47_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_MAN_BATCH_mu_0_47_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+     4
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_21_P1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-5.8622%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.53
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_21_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_21_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_21_P_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_21_P'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    20
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GAM_BATCH_mu_0_46_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-57.024%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-46.4036%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-41.3227%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-35.1775%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-27.5946%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-18.0025%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-6.221%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.53
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GAM_BATCH_mu_0_46_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GAM_BATCH_mu_0_46_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GAM_BATCH_mu_0_46_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GAM_BATCH_mu_0_46_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    21
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLYC_BATCH_mu_0_47_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-57.9384%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-47.544%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-42.5711%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-36.5567%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-29.1351%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-19.7471%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-8.2163%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.54
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLYC_BATCH_mu_0_47_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLYC_BATCH_mu_0_47_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLYC_BATCH_mu_0_47_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLYC_BATCH_mu_0_47_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    26
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_SALTS_BATCH_mu_0_55_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-64.0565%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-55.174%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-50.9244%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-45.7848%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-39.4427%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-31.4203%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-21.5666%
+*Iteration #8
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2240 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexadecanoyl-CoA) (No1)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13412 Err:-11.0351%
+*Iteration #9
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2173 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxotetradecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.15492 Err:2.7634%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.49
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_SALTS_BATCH_mu_0_55_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_SALTS_BATCH_mu_0_55_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_SALTS_BATCH_mu_0_55_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_SALTS_BATCH_mu_0_55_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    27
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_XYL_BATCH_mu_0_55_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-64.0565%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-55.174%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-50.9244%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-45.7848%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-39.4427%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-31.4203%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-21.5666%
+*Iteration #8
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2240 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexadecanoyl-CoA) (No1)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13412 Err:-11.0351%
+*Iteration #9
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2173 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxotetradecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.15492 Err:2.7634%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.49
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_XYL_BATCH_mu_0_55_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_XYL_BATCH_mu_0_55_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_XYL_BATCH_mu_0_55_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_XYL_BATCH_mu_0_55_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    16
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_41_P1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-51.7831%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-39.8675%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-34.1669%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-27.2723%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-18.7646%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-8.0028%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.54
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_41_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_41_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_41_P_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_41_P'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    23
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_49_V1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-59.6552%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-49.6851%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-44.9152%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-39.1462%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-32.0275%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-23.0227%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-11.9625%
+*Iteration #8
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2240 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexadecanoyl-CoA) (No1)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13412 Err:-0.14138%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.5
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_49_V_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_49_V_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_49_V_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_49_V'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    19
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_46_P1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-57.024%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-46.4036%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-41.3227%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-35.1775%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-27.5946%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-18.0025%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-6.221%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.53
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_46_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_46_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_46_P_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_46_P'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    25
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_51_P1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-61.2374%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-51.6582%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-47.0754%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-41.5326%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-34.6931%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-26.0415%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-15.415%
+*Iteration #8
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2240 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexadecanoyl-CoA) (No1)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13412 Err:-4.0574%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.52
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_51_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_51_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_51_P_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_51_P'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+     1
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_11_V1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is not overconstrained.
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.45
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_11_V_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_11_V_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_11_V_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_11_V'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    17
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_FUM_BATCH_mu_0_42_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-52.9311%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-41.2992%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-35.7344%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-29.0039%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-20.6988%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-10.1932%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:2.7104%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.49
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_FUM_BATCH_mu_0_42_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_FUM_BATCH_mu_0_42_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_FUM_BATCH_mu_0_42_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_FUM_BATCH_mu_0_42_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    14
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_40_V1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-50.5776%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-38.3642%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-32.5211%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-25.4541%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-16.7337%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-5.7029%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.53
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_40_V_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_40_V_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_40_V_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_40_V'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+     9
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_ACE_BATCH_mu_0_3_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-34.1035%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-17.8189%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-10.0281%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-0.60548%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.5
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_ACE_BATCH_mu_0_3_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_ACE_BATCH_mu_0_3_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_ACE_BATCH_mu_0_3_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_ACE_BATCH_mu_0_3_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    31
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_42deg_BATCH_mu_0_66_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-70.0471%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-62.645%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-59.1037%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-54.8207%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-49.5356%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-42.8502%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-34.6389%
+*Iteration #8
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2240 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexadecanoyl-CoA) (No1)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13412 Err:-25.8625%
+*Iteration #9
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2173 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxotetradecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.15492 Err:-14.3638%
+*Iteration #10
+ Automatic search // EC#: 2.3.1.30
+  Protein:P0A9D4 Rxn#:2514 name: Serine O-acetyltransferase (No1)
+  prev_Kcat:0.067999 new_Kcat:2333.3333 CC:0.18108 Err:1.1614%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.49
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_42deg_BATCH_mu_0_66_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_42deg_BATCH_mu_0_66_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_42deg_BATCH_mu_0_66_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_42deg_BATCH_mu_0_66_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    29
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_pH6_BATCH_mu_0_63_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-68.6207%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-60.8662%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-57.1562%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-52.6693%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-47.1325%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-40.1288%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-31.5264%
+*Iteration #8
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2240 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexadecanoyl-CoA) (No1)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13412 Err:-22.3322%
+*Iteration #9
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2173 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxotetradecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.15492 Err:-10.2859%
+*Iteration #10
+ Automatic search // EC#: 2.3.1.30
+  Protein:P0A9D4 Rxn#:2514 name: Serine O-acetyltransferase (No1)
+  prev_Kcat:0.067999 new_Kcat:2333.3333 CC:0.18108 Err:5.9786%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.47
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_pH6_BATCH_mu_0_63_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_pH6_BATCH_mu_0_63_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_pH6_BATCH_mu_0_63_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_pH6_BATCH_mu_0_63_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+     2
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_12_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is not overconstrained.
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.49
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_12_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_12_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_12_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_12_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+     8
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GAL_BATCH_mu_0_26_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-23.9656%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-5.1757%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.53
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GAL_BATCH_mu_0_26_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GAL_BATCH_mu_0_26_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GAL_BATCH_mu_0_26_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GAL_BATCH_mu_0_26_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    10
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_31_P1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-36.2292%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-20.4699%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-12.9304%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-3.8118%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.52
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_31_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_31_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_31_P_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_31_P'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    28
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_BATCH_mu_0_58_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-65.9156%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-57.4925%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-53.4628%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-48.589%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-42.575%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-34.9675%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-25.6235%
+*Iteration #8
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2240 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexadecanoyl-CoA) (No1)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13412 Err:-15.6367%
+*Iteration #9
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2173 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxotetradecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.15492 Err:-2.5519%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.51
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_BATCH_mu_0_58_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_BATCH_mu_0_58_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_BATCH_mu_0_58_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_BATCH_mu_0_58_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    13
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_36_P1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-45.0863%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-31.5158%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-25.0234%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-17.1712%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-7.4819%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.54
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_36_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_36_P_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_36_P_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_36_P'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+    18
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_SUCC_BATCH_mu_0_44_S1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-55.0706%
+*Iteration #2
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:4497 name: Ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate) (reversible) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.24729 Err:-43.9674%
+*Iteration #3
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2238 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.094697 Err:-38.6555%
+*Iteration #4
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2110 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.10461 Err:-32.231%
+*Iteration #5
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:2296 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.11685 Err:-24.3034%
+*Iteration #6
+ Automatic search // EC#: 4.2.1.17 5.1.2.3 1.1.1.35
+  Protein:P77399 Rxn#:3201 name: 3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA) (No2)
+  prev_Kcat:0.189 new_Kcat:45500 CC:0.13233 Err:-14.2753%
+*Iteration #7
+ Automatic search // EC#: 1.1.1.86
+  Protein:P05793 Rxn#:2136 name: Ketol-acid reductoisomerase (2-Acetolactate) (No1)
+  prev_Kcat:0.12 new_Kcat:78.3 CC:0.14377 Err:-1.9583%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.51
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_SUCC_BATCH_mu_0_44_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_SUCC_BATCH_mu_0_44_S_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_SUCC_BATCH_mu_0_44_S_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_SUCC_BATCH_mu_0_44_S'
+            csense: [3593x1 char]
+
+
+tmp_idx =
+
+     5
+
+Converting COBRA structure to RAVEN..
+
+***************************************************************
+   GECKO: Adding enzyme constraints to a genome-scale model
+***************************************************************
+
+Getting genome-scale model ready... Done!
+
+==================
+Generating ecModel:
+==================
+Retrieving EC numbers............................... Done!
+Matching kcats............................... Done!
+Adding enzymes to reactions........................................ Done!
+Saving rawecEcoli_GLC_CHEM_mu_0_21_V1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+==============================================================
+Generating ecModel with shared pool assumption (ecModel_batch):
+==============================================================
+Generate batch models
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+Calculating total abundance............................................Matching data to enzymes in model... Done!
+Total protein amount measured = 0 g/gDW
+Total enzymes measured = 0 enzymes
+Enzymes in model with 0 g/gDW = 0 enzymes
+Total protein amount not measured = 0.61 g/gDW
+Total enzymes not measured = 1259 enzymes
+Total protein in model = 0.61 g/gDW
+The ECmodel is overconstrained!
+******************* Limiting Kcats curation *******************
+*Iteration #1
+ Automatic search // EC#: 6.3.5.3
+  Protein:P15254 Rxn#:2644 name: Phosphoribosylformylglycinamidine synthase (No1)
+  prev_Kcat:0.05 new_Kcat:5.0675 CC:0.60857 Err:-5.8622%
+***************************************************************
+Fitting sigma factor....................... Done!
+Saving simulation results files...
+File successfully saved.
+Sigma factor (fitted for growth on glucose): 0.53
+
+=============
+Saving models:
+=============
+Saving rawecEcoli_GLC_CHEM_mu_0_21_V_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+Saving adprawecEcoli_GLC_CHEM_mu_0_21_V_batch1:
+Converting RAVEN structure to COBRA..
+Each model.subSystems{x} is a character array, and this format is retained.
+Document written
+Each model.subSystems{x} is a character array, and this format is retained.
+
+ans = 
+
+  struct with fields:
+
+                 S: [3593x6089 double]
+                lb: [6089x1 double]
+                ub: [6089x1 double]
+                 c: [6089x1 double]
+              rxns: {6089x1 cell}
+          rxnNames: {6089x1 cell}
+        subSystems: {6089x1 cell}
+       metFormulas: {3593x1 cell}
+             comps: {3x1 cell}
+         compNames: {3x1 cell}
+        metCharges: [3593x1 double]
+             genes: {1505x1 cell}
+              mets: {3593x1 cell}
+               rev: [6089x1 double]
+                 b: [3593x1 double]
+                id: 'rawecEcoli_GLC_CHEM_mu_0_21_V_v1'
+              name: 'Escherichia coli str. K-12 substr. MG1655'
+           grRules: {6089x1 cell}
+        rxnGeneMat: [6089x1505 double]
+           eccodes: {6089x1 cell}
+        rxnMiriams: {6089x1 cell}
+    geneShortNames: {1505x1 cell}
+          metNames: {3593x1 cell}
+          metComps: [3593x1 double]
+        metMiriams: {3593x1 cell}
+           enzymes: {1259x1 cell}
+          enzGenes: {1259x1 cell}
+          enzNames: {1259x1 cell}
+               MWs: [1259x1 double]
+         sequences: {1259x1 cell}
+          pathways: {1259x1 cell}
+       description: 'ecModel of wecEcoli_GLC_CHEM_mu_0_21_V'
+            csense: [3593x1 char]
+
