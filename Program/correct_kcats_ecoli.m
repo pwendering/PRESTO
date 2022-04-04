@@ -3,7 +3,7 @@ clear;clc
 configuration_ecoli
 
 % start diary
-% diary(logFileName)
+diary(logFileName)
 
 % set up parallel pool if cross-validation should be run parallelized
 if runParallel
@@ -89,11 +89,11 @@ save(fullfile('Results','delta_va',['deltaVariability','_e_coli','_lambda_',num2
     'minDelta','maxDelta','deltaVal','corrKcats','proteinIds','deltaSamplingMat')
 
 delete(gcp('nocreate'));
-diary off
+
 %% Run validation comparison with pFBA and GECKO models; Run corrected kcat analysis
 
 [relE, Mu]=comp_PRTcondmod(corrModels, false, 'escherichia coli', 'lambda1e5');
-
+diary off
 function runParallel = setup_parallel(ncpu)
 runParallel = true;
 p = gcp('nocreate');
