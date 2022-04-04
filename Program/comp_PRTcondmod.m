@@ -46,11 +46,11 @@ switch org_name
             tmpSplit=strsplit(condNames{i}, '_');
             switch(tmpSplit{end})
                 case 'V'
-                    altcondNames{i}='Valgepea2013';
+                    altcondNames{i}='Valgepea2013_';
                 case 'S'
-                    altcondNames{i}='Schmidt2015';
+                    altcondNames{i}='Schmidt2015_';
                 case 'P'
-                    altcondNames{i}='Peebo2015';
+                    altcondNames{i}='Peebo2015_';
             end
         end
         altcondNames=strcat(altcondNames', condNames');
