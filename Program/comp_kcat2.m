@@ -116,6 +116,12 @@ if exist('figprefix', 'var')
 %export results
 writetable(overvTable, fullfile(resdir, [figprefix, '_', by, 'kcattab.tsv']), 'FileType', 'text', 'Delimiter', '\t')
 writetable(kcat_tab, fullfile(resdir, [figprefix, '_', by,'kcattabvalues.tsv']), 'FileType', 'text', 'Delimiter', '\t')
+%Export names and Inforamtion on the proteins in the overlap of PRESTO and
+%GECKO
+PRTGKOovTable=KegginfTable(ismember(string(KegginfTable.UniprotID), table2array(overvTable(all(table2array(overvTable(:,2:end)), 2),1))),:);
+PRTGKOovTable.Protein_Name=get_Pnames(PRTGKOovTable.UniprotID)';
+PRTGKOovTable=PRTGKOovTable(:, [1, size(PRTGKOovTable, 2), 2:(size(PRTGKOovTable, 2)-1)]);
+writetable(PRTGKOovTable, fullfile(resdir, [figprefix, '_', by,'PRTGKOovinfo.tsv']), 'FileType', 'text', 'Delimiter', '\t')
 
 %% plot log plot
 plot_x=reportTable.("KCAT UPDATED [s^-1]")(ismember(reportTable(:,col_idx),...
