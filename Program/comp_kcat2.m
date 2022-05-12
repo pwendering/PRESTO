@@ -118,11 +118,13 @@ writetable(overvTable, fullfile(resdir, [figprefix, '_', by, 'kcattab.tsv']), 'F
 writetable(kcat_tab, fullfile(resdir, [figprefix, '_', by,'kcattabvalues.tsv']), 'FileType', 'text', 'Delimiter', '\t')
 %Export names and Inforamtion on the proteins in the overlap of PRESTO and
 %GECKO
-PRTGKOovTable=KegginfTable(ismember(string(KegginfTable.UniprotID), table2array(overvTable(all(table2array(overvTable(:,2:end)), 2),1))),:);
+PRTGKOovTable=KegginfTable(ismember(string(KegginfTable.UniprotID), table2array(overvTable(all(table2array(overvTable(:,3:end)), 2),1))),:);
 PRTGKOovTable.Protein_Name=get_Pnames(PRTGKOovTable.UniprotID)';
 PRTGKOovTable=PRTGKOovTable(:, [1, size(PRTGKOovTable, 2), 2:(size(PRTGKOovTable, 2)-1)]);
 writetable(PRTGKOovTable, fullfile(resdir, [figprefix, '_', by,'PRTGKOovinfo.tsv']), 'FileType', 'text', 'Delimiter', '\t')
-
+if size(PRTGKOovTable, 1)>5
+    PWenrich(KegginfTable, PRTGKOovTable.UniprotID, fullfile(resdir, [figprefix '_ov_']))
+end
 %% plot log plot
 plot_x=reportTable.("KCAT UPDATED [s^-1]")(ismember(reportTable(:,col_idx),...
     overvTable(overvTable.GECKO_Modifications & overvTable.PRESTO_Modifications, col_idx)));
