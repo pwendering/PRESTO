@@ -73,7 +73,7 @@ for d=1:3
         pl(i)=scatter(1:numel(condNames), abs(gkorelE{d}(i,order)), [],'SizeData', 10,...
             'MarkerEdgeColor', 'none',  'MarkerFaceColor', 'black', 'Marker', 'o',  'MarkerFaceAlpha', 0.35);
     end
-    pl(numel(condNames)+1)=scatter(1:numel(condNames),abs(prsrelE{d}(order)), [], 'red', '+');
+    pl(numel(condNames)+1)=scatter(1:numel(condNames),abs(prsrelE{d}(order)), [], 'MarkerFaceColor', 'red', 'MarkerEdgeColor','none','Marker', 'd', 'SizeData', 15, 'MarkerFaceAlpha', 0.8);
     ylabel('relative error')
     if (d~=3)
         set(gca,'xticklabel',[])
