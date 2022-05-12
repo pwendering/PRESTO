@@ -58,6 +58,34 @@ legend({'p', 'p;exp.u', 'p;eu;abun', 'exp.u.', 'perfect fit'})
 set(gcf, 'PaperUnits', 'inches');
 set(gcf, 'PaperPosition', [0 0 7 5]);
 saveas(gcf, fullfile(resdir, [fileprfx '_constcomp_gecko.svg']))
+%% plot a point diagram of all condition specific models of GECKO in all conditions and 1 point for GECKO
+%obtain condition names sorting according to PRESTO performance
+[~, order]=sort(prsrelE{3});
+% x_condNames=categorical(condNames);
+% x_condNames=reordercats(x_condNames, condNames(order))
+figure
+tiledlayout(3,1)
+set(0, 'DefaultAxesTickLabelInterpreter', 'none')
+for d=1:3
+    nexttile
+    hold on
+    for i=1:size(gkorelE{d},1)
+        scatter(1:numel(condNames), gkorelE{d}(i,order), [],'SizeData', 10,...
+            'MarkerEdgeColor', 'none',  'MarkerFaceColor', 'black', 'Marker', 'o',  'MarkerFaceAlpha', 0.35)
+    end
+    scatter(1:numel(condNames),prsrelE{d}(order), [], 'red', '+')
+    if (d~=3)
+        set(gca,'xticklabel',[])
+    else
+        xticks(1:numel(condNames))
+        xticklabels(condNames(order))
+        xtickangle(75)
+    end
+    hold off
+end
+set(gcf, 'PaperUnits', 'inches');
+set(gcf, 'PaperPosition', [0 0 10 5]);
+saveas(gcf, fullfile(resdir, [fileprfx '_condp.svg']))
 %% plot scatterplot per condition, condition specific PRESTO agains
 %condidtion specific GECKO
 plot_cond=cellfun(@(x) strsplit(x, '_'), condNames, 'UniformOutput', false);
