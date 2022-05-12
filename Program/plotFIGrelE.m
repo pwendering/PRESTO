@@ -70,21 +70,23 @@ for d=1:3
     nexttile
     hold on
     for i=1:size(gkorelE{d},1)
-        scatter(1:numel(condNames), gkorelE{d}(i,order), [],'SizeData', 10,...
-            'MarkerEdgeColor', 'none',  'MarkerFaceColor', 'black', 'Marker', 'o',  'MarkerFaceAlpha', 0.35)
+        pl(i)=scatter(1:numel(condNames), abs(gkorelE{d}(i,order)), [],'SizeData', 10,...
+            'MarkerEdgeColor', 'none',  'MarkerFaceColor', 'black', 'Marker', 'o',  'MarkerFaceAlpha', 0.35);
     end
-    scatter(1:numel(condNames),prsrelE{d}(order), [], 'red', '+')
+    pl(numel(condNames)+1)=scatter(1:numel(condNames),abs(prsrelE{d}(order)), [], 'red', '+');
+    ylabel('relative error')
     if (d~=3)
         set(gca,'xticklabel',[])
     else
         xticks(1:numel(condNames))
         xticklabels(condNames(order))
         xtickangle(75)
+        legend([pl(1) pl(numel(condNames)+1)], 'GECKO', 'PRESTO')
     end
     hold off
 end
 set(gcf, 'PaperUnits', 'inches');
-set(gcf, 'PaperPosition', [0 0 10 5]);
+set(gcf, 'PaperPosition', [0 0 5 8]);
 saveas(gcf, fullfile(resdir, [fileprfx '_condp.svg']))
 %% plot scatterplot per condition, condition specific PRESTO agains
 %condidtion specific GECKO
