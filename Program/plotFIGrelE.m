@@ -60,7 +60,7 @@ set(gcf, 'PaperPosition', [0 0 7 5]);
 saveas(gcf, fullfile(resdir, [fileprfx '_constcomp_gecko.svg']))
 %% plot a point diagram of all condition specific models of GECKO in all conditions and 1 point for GECKO
 %obtain condition names sorting according to PRESTO performance
-[~, order]=sort(prsrelE{3});
+[~, order]=sort(abs(prsrelE{3}));
 % x_condNames=categorical(condNames);
 % x_condNames=reordercats(x_condNames, condNames(order))
 figure
