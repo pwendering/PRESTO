@@ -67,8 +67,9 @@ fprintf('\n==================\n')
 %Retrieve kcats & MWs for each rxn in model:
 cd ../get_enzyme_data
 model_data = getEnzymeCodes(model);
-kcats      = matchKcats(model_data,parameters.org_name);
-
+[kcats, origintab]    = matchKcats(model_data,parameters.org_name);
+%Save a table with origins for each kcat reaction
+writematrix(origintab, ['../../models/', name, '/', name, '_kcatOrigins.txt'])
 
 %Integrate enzymes in the model:
 cd ../change_model
