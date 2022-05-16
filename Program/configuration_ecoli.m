@@ -59,5 +59,6 @@ maxKcatFile = fullfile(geckoDir, 'databases', 'max_KCAT.txt');
 % model and data files
 modelFile = fullfile(geckoDir, 'models', 'ecEcoli', 'rawecEcoli.mat');
 batchModelFile = fullfile(geckoDir, 'models', 'ecEcoli', 'rawecEcoli_batch.mat');
+kcatoriginFile=fullfile(geckoDir, 'models', 'ecEcoli', 'ecEcoli_kcatOrigins.txt');
 K = retrieveMaxKcat(maxKcatFile,orgName);
 clear maxKcatFile

@@ -73,7 +73,7 @@ kcats = matchKcats(model_data,parameters.org_name);
 cd ../change_model
 [ecModel, origintab] = readKcatData(model_data,kcats);
 %Save a table with origins for each kcat reaction
-writematrix(origintab, ['../../models/', name, '/', name, '_kcatOrigins.txt'])
+writetable(origintab, ['../../models/', name, '/', name, '_kcatOrigins.txt'])
 cd ../../models
 if unmod
 ecModel = saveECmodel(ecModel,toolbox, name, ['raw' name], modelVer);
