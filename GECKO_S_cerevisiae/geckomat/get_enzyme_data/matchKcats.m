@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- % [kcats, out_tab] = matchKcats(model_data,org_name)
+ % kcats = matchKcats(model_data,org_name)
  % Matchs the model EC numbers and substrates to the BRENDA database, to
  % return the corresponding kcats for each reaction.
  %
@@ -43,13 +43,11 @@
  %           *tot.org_sa:   The amount of ECs matched for the organism & 
  %                          using s.a. (1x1)
  %           *tot.rest_sa:  The amount of ECs matched for any organism & 
- %                          using s.a. (1x1)
- %  out_tab:    A table of size (forward+revers reaxtions)x20 that gives the
- %              origin for the kcat linked to each reaction. 
+ %                          using s.a. (1x1) 
  % Benjamin J. Sanchez. Last edited: 2016-03-01
  % Ivan Domenzain.      Last edited: 2018-01-16
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- function [kcats, out_tab] = matchKcats(model_data, org_name)
+ function kcats = matchKcats(model_data, org_name)
  
  fprintf('Matching kcats...')
  
@@ -125,31 +123,6 @@
  kcats.forw = forw;
  kcats.back = back;
  kcats.tot  = tot;
- 
- n_r=size(forw.org_s, 1);
- out_tab=zeros(n_r+sum(model_data.model.rev), size(forw.org_s,2));
- for i=1:size(out_tab, 1)
-     for j=1:size(out_tab, 2)
-         
-         %index of reverse reactions 
-         rev_idx=find(model_data.model.rev);
-         %for forward reactions
-         if i<=n_r
-             orig=find([forw.org_s(i,j)  forw.rest_s(i,j)  forw.org_ns(i,j) ...
-                 forw.org_sa(i,j) forw.rest_ns(i,j) forw.rest_sa(i,j)], 1, 'first');
-             if ~isempty(orig)
-             out_tab(i,j)=orig;
-             end
-         else %for reverse reactions
-             orig=find([back.org_s(rev_idx(i-n_r),j)  back.rest_s(rev_idx(i-n_r),j) ...
-                 back.org_ns(rev_idx(i-n_r),j) back.org_sa(rev_idx(i-n_r),j) back.rest_ns(rev_idx(i-n_r),j) ...
-                 back.rest_sa(rev_idx(i-n_r),j)], 1, 'first');
-             if ~isempty(orig)
-                 out_tab(i,j)=orig;
-             end
-         end
-     end
-end
          
 fprintf(' Done!\n')
  

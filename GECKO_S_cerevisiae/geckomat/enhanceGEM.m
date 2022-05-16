@@ -67,13 +67,14 @@ fprintf('\n==================\n')
 %Retrieve kcats & MWs for each rxn in model:
 cd ../get_enzyme_data
 model_data = getEnzymeCodes(model);
-[kcats, origintab]    = matchKcats(model_data,parameters.org_name);
-%Save a table with origins for each kcat reaction
-writematrix(origintab, ['../../models/', name, '/', name, '_kcatOrigins.txt'])
+kcats = matchKcats(model_data,parameters.org_name);
+
 
 %Integrate enzymes in the model:
 cd ../change_model
-ecModel = readKcatData(model_data,kcats);
+[ecModel, origintab] = readKcatData(model_data,kcats);
+%Save a table with origins for each kcat reaction
+writetable(origintab, ['../../models/', name, '/', name, '_kcatOrigins.txt'])
 cd ../../models
 if unmod
 ecModel = saveECmodel(ecModel,toolbox, name, ['raw' name], modelVer);
