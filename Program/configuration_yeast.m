@@ -68,3 +68,4 @@ K = retrieveMaxKcat(maxKcatFile,orgName);
 clear maxKcatFile
 modelFile = fullfile(geckoDir, 'models', 'ecYeast', 'rawecYeast.mat');
 batchModelFile = fullfile(geckoDir,  'models', 'ecYeast', 'rawecYeast_batch.mat');
+kcatoriginFile=fullfile(geckoDir, 'models', 'ecYeast', 'ecYeast_kcatOrigins.txt');

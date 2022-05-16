@@ -64,6 +64,9 @@ gkoreportTable.Properties.VariableNames(1:2)={'Protein', 'Reaction#'};
  %get PRESTO kcat modifications
  basic_model=readGKOmodel(modelFile);
  [~,~,~,reportTable] = findKcatCorrections(basic_model, prst_mod, enzMetPfx);
+ %plot info on kcat adjustments dependen on kcat source
+ get_kcatori(reportTable, basic_model, fullfile(resdir, figprefix))
+ 
 % convert reaction and protein ids to strings
 reportTable.("PROTEIN ID")=string(table2array(reportTable(:, 'PROTEIN ID')));
 reportTable.("REACTION ID")=string(table2array(reportTable(:, 'REACTION ID')));
