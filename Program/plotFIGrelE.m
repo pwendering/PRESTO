@@ -64,29 +64,53 @@ saveas(gcf, fullfile(resdir, [fileprfx '_constcomp_gecko.svg']))
 % x_condNames=categorical(condNames);
 % x_condNames=reordercats(x_condNames, condNames(order))
 figure
+
 tiledlayout(3,1)
 set(0, 'DefaultAxesTickLabelInterpreter', 'none')
 for d=1:3
     nexttile
     hold on
-    for i=1:size(gkorelE{d},1)
-        pl(i)=scatter(1:numel(condNames), abs(gkorelE{d}(i,order)), [],'SizeData', 10,...
-            'MarkerEdgeColor', 'none',  'MarkerFaceColor', 'black', 'Marker', 'o',  'MarkerFaceAlpha', 0.35);
+    boxplot(abs(gkorelE{d}(:, order)))
+    %change line style
+    all_lines= findobj(gca, 'Type', 'Line');
+    arrayfun( @(x) set(x, 'LineStyle', '-', 'Color', 'k', 'LineWidth', 1), all_lines)
+    %delete outliers 
+    outliers=findobj(gca, 'Tag', 'Outliers');
+    delete(outliers)
+    
+    %To change box aesthetics
+    %myboxes = findobj(ax,'Tag','Box')
+    %arrayfun( @(box) patch( box.XData, box.YData, 'm', 'FaceAlpha', 0.5), myboxes(1:5) )
+    for j=1:length(condNames)
+        %scatter(repelem(j, size(gkorelE{2},1)), gkorelE{2}(:,j), 30, 'Jitter', 'on', 'JitterAmount', 0.1, 'MarkerEdgeColor', 'k')
+        pl(j)=scatter(repelem(j, size(gkorelE{d},1)), abs(gkorelE{d}(:,order(j))), 15, 'MarkerEdgeColor', 'k', 'MarkerEdgeAlpha', 0.6, 'Jitter', 'on', 'JitterAmount', 0.2);
     end
-    pl(numel(condNames)+1)=scatter(1:numel(condNames),abs(prsrelE{d}(order)), [], 'MarkerFaceColor', 'red', 'MarkerEdgeColor','none','Marker', 'd', 'SizeData', 15, 'MarkerFaceAlpha', 0.8);
+%     for i=1:size(gkorelE{d},1)
+%         pl(i)=scatter(1:numel(condNames), abs(gkorelE{d}(i,order)), [],'SizeData', 10,...
+%             'MarkerEdgeColor', 'none',  'MarkerFaceColor', 'black', 'Marker', 'o',  'MarkerFaceAlpha', 0.35);
+%     end
+    pl(length(condNames)+1)=scatter(1:numel(condNames),abs(prsrelE{d}(order)), [], 'MarkerFaceColor', 'red', 'MarkerEdgeColor','none','Marker', 'd', 'SizeData', 30, 'MarkerFaceAlpha', 0.8);
     ylabel('relative error')
+    %create padding in y axis
+    pad=0.025;
+    maxylim=max(abs([gkorelE{d}, prsrelE{d}]), [], 'all', 'omitnan');
+    maxylim=maxylim*(1+pad);
+    minylim=min(abs([gkorelE{d}, prsrelE{d}]), [], 'all', 'omitnan')-maxylim*pad;
+    ylim([minylim, maxylim]);
+    set(gca, 'Box', 'off')
     if (d~=3)
         set(gca,'xticklabel',[])
     else
         xticks(1:numel(condNames))
         xticklabels(condNames(order))
         xtickangle(75)
-        legend([pl(1) pl(numel(condNames)+1)], 'GECKO', 'PRESTO')
+        l=legend([pl(1) pl(numel(condNames)+1)], 'GECKO', 'PRESTO');
+        l.Location='southeast';
     end
     hold off
 end
 set(gcf, 'PaperUnits', 'inches');
-set(gcf, 'PaperPosition', [0 0 5 8]);
+set(gcf, 'PaperPosition', [0 0 7 8]);
 saveas(gcf, fullfile(resdir, [fileprfx '_condp.svg']))
 %% plot scatterplot per condition, condition specific PRESTO agains
 %condidtion specific GECKO

@@ -53,7 +53,7 @@ switch org_name
                     altcondNames{i}='Peebo2015_';
             end
         end
-        altcondNames=strcat(altcondNames', condNames');
+        altcondNames=strcat(altcondNames', extractBefore(condNames, '_mu')');
 end
 
 %import the sigma values used in GECKO models to set equal constrains
