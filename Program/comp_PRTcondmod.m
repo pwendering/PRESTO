@@ -29,31 +29,15 @@ switch org_name
         %set label for pfba dataset used for comparison 
         pfbalab='Chen';
         %Create alternative cond_name prefixes according to carbon source
-        altcondNames=repelem({'GLUC_'}, length(condNames));
-        altcondNames(contains(condNames,{'EtOH', 'Etoh'}))={'ETOH_'};
-        altcondNames(contains(condNames,{'Gln'}))={'GLUC+GLN_'};
-        altcondNames(contains(condNames,{'Phe'}))={'GLUC+PHE_'};
-        altcondNames(contains(condNames,{'Ile'}))={'GLUC+ILE_'};
-        altcondNames=strcat(altcondNames', condNames');
+        altcondNames=strrep(condNames, 'Yu2021', 'Y21');
+        altcondNames=strrep(altcondNames, 'Yu2020', 'Y20');
+        altcondNames=strrep(altcondNames, 'Lahtvee2017', 'L');
+        altcondNames=strrep(altcondNames, 'DiBartolomeo2020', 'D');
     case 'escherichia coli'
         configuration_ecoli
         condNames=readDavidi2016([],topDir);
         %set lebel for pfba dataset used for comparison 
         pfbalab='Davidi';
-        %Create alternative cond Names based on publication
-        altcondNames=cell(1, length(condNames));
-        for i=1:length(condNames)
-            tmpSplit=strsplit(condNames{i}, '_');
-            switch(tmpSplit{end})
-                case 'V'
-                    altcondNames{i}='Valgepea2013_';
-                case 'S'
-                    altcondNames{i}='Schmidt2015_';
-                case 'P'
-                    altcondNames{i}='Peebo2015_';
-            end
-        end
-        altcondNames=strcat(altcondNames', extractBefore(condNames, '_mu')');
 end
 
 %import the sigma values used in GECKO models to set equal constrains
@@ -142,9 +126,13 @@ kcat_comptab=comp_kcat2(models{1}, max_gkomod, 'Protein',figprefix);
 %for all
 
 %% rel Error all GECKO and PRESTO (Figure 2 among others)
-plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), condNames, figprefix, topDir)
-%same plots with alternative condNames (Figure 4 among others
-plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), altcondNames, [figprefix '_alt'], topDir)
+    switch org_name
+    case 'saccharomyces cerevisiae'
+       plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), altcondNames, [figprefix], topDir)
+    case 'escherichia coli'
+        plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), condNames, figprefix, topDir)
+    end
+
 %plot relative Error of 
 plotFIGrelE3(relE(1:3), maxgkorelE(1:3), pFBArelE(1:3), [figprefix '_pFBAscat'], topDir, pfbalab);
 
