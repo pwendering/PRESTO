@@ -128,6 +128,7 @@ kcat_comptab=comp_kcat2(models{1}, max_gkomod, 'Protein',figprefix);
 %% rel Error all GECKO and PRESTO (Figure 2 among others)
     switch org_name
     case 'saccharomyces cerevisiae'
+        %Use shortened condition names for plot labels
        plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), altcondNames, [figprefix], topDir)
     case 'escherichia coli'
         plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), condNames, figprefix, topDir)
