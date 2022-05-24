@@ -142,6 +142,8 @@ text(min(plot_x)+0.5, max(plot_y)-0.5, {['Spearman \rho: ', num2str(round(rho, 3
     ['p-value: ', num2str(round(pval, 3, 'significant'))]})
 xlabel('kcat PRESTO [s^{-1}]')
 ylabel('kcat GECKO [s^{-1}]')
+set(gcf, 'PaperUnits', 'inches');
+set(gcf, 'PaperPosition', [0 0 4 4]);
 saveas(gcf, fullfile(resdir, [figprefix, 'kcatcomp.svg']))
 
 % %% Compare with davidi data
