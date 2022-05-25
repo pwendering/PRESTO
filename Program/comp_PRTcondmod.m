@@ -36,6 +36,13 @@ switch org_name
     case 'escherichia coli'
         configuration_ecoli
         condNames=readDavidi2016([],topDir);
+        %Put the study abbrevation at the beginning of the strind
+        altcondNames=cell(length(condNames), 1);
+
+        for i=1:length(condNames)
+           tmpSplit=strsplit(condNames{i}, '_');
+           altcondNames{i}=strjoin([tmpSplit(end), tmpSplit(1:(end-1))], '_');
+        end
         %set lebel for pfba dataset used for comparison 
         pfbalab='Davidi';
 end
@@ -126,13 +133,8 @@ kcat_comptab=comp_kcat2(models{1}, max_gkomod, 'Protein',figprefix);
 %for all
 
 %% rel Error all GECKO and PRESTO (Figure 2 among others)
-    switch org_name
-    case 'saccharomyces cerevisiae'
-        %Use shortened condition names for plot labels
-       plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), altcondNames, [figprefix], topDir)
-    case 'escherichia coli'
-        plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), condNames, figprefix, topDir)
-    end
+%Use shortened condition names for plot labels
+plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), altcondNames, figprefix, topDir)
 
 %plot relative Error of 
 plotFIGrelE3(relE(1:3), maxgkorelE(1:3), pFBArelE(1:3), [figprefix '_pFBAscat'], topDir, pfbalab);
