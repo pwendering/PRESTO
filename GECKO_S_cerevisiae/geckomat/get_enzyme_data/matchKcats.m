@@ -43,8 +43,7 @@
  %           *tot.org_sa:   The amount of ECs matched for the organism & 
  %                          using s.a. (1x1)
  %           *tot.rest_sa:  The amount of ECs matched for any organism & 
- %                          using s.a. (1x1)
- % 
+ %                          using s.a. (1x1) 
  % Benjamin J. Sanchez. Last edited: 2016-03-01
  % Ivan Domenzain.      Last edited: 2018-01-16
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -124,7 +123,7 @@
  kcats.forw = forw;
  kcats.back = back;
  kcats.tot  = tot;
- 
+         
 fprintf(' Done!\n')
  
  end
