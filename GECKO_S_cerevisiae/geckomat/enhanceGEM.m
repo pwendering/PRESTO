@@ -25,7 +25,7 @@ function [ecModel,ecModel_batch] = enhanceGEM(model,toolbox, unmod, name,modelVe
 %   Ivan Domenzain. Last edited: 2020-10-05
 %
 if nargin < 3
-    raw=false;
+    unmod=false;
 end
 if nargin < 4
     name    = '';
