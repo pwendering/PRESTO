@@ -109,6 +109,8 @@ clear c o
 %% Run variability analysis and sampling for deltas
 [minDelta,maxDelta] = deltaVariabilityAnalysis(LP,solution);
 
+deltaSamplingMat = deltaSampling(LP,solution,minDelta,maxDelta,'nSamples',1e4);
+
 save(fullfile('Results','delta_va',['deltaVariability' '_s_cerevisiae' '_lambda_' num2str(lambda)]),...
     'minDelta','maxDelta','deltaVal','corrKcats','proteinIds','deltaSamplingMat')
 
