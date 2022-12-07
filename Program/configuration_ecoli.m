@@ -21,7 +21,7 @@ sigma = 0.5;
 % correction factor for protein abudances
 protCorrFact = NaN;
 % define top-level directory
-topDir = pwd;
+topDir = char(regexp(pwd, '^.*PRESTO', 'match'));
 % solver for linear optimization
 cobraSolver = 'gurobi';
 % define log file name )
