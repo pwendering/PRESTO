@@ -65,5 +65,6 @@ clear maxKcatFile
 % model and data files
 modelFile = fullfile(geckoDir, 'models', 'ecEcoli', 'rawecEcoli.mat');
 batchModelFile = fullfile(geckoDir, 'models', 'ecEcoli', 'rawecEcoli_batch.mat');
+kcatoriginFile=fullfile(geckoDir, 'models', 'ecEcoli', 'ecEcoli_kcatOrigins.txt');
 
 
