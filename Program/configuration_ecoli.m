@@ -53,12 +53,19 @@ catch
     error('COBRA toolbox is not installed')
 end
 
-% get maximum kcat value
+% add organism-specific GECKO functions to path
 geckoDir = fullfile(topDir, 'GECKO_E_coli');
+addpath(genpath(fullfile(geckoDir, 'geckomat')), '-begin')
+
+% get maximum kcat value
 maxKcatFile = fullfile(geckoDir, 'databases', 'max_KCAT.txt');
+K = retrieveMaxKcat(maxKcatFile,orgName);
+clear maxKcatFile
+
 % model and data files
 modelFile = fullfile(geckoDir, 'models', 'ecEcoli', 'rawecEcoli.mat');
 batchModelFile = fullfile(geckoDir, 'models', 'ecEcoli', 'rawecEcoli_batch.mat');
 kcatoriginFile=fullfile(geckoDir, 'models', 'ecEcoli', 'ecEcoli_kcatOrigins.txt');
-K = retrieveMaxKcat(maxKcatFile,orgName);
-clear maxKcatFile
+
+
+

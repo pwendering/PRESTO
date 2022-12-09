@@ -61,11 +61,16 @@ catch
     error('COBRA toolbox is not installed')
 end
 
-% get maximum kcat value
+% add organism-specific GECKO functions to path
 geckoDir = fullfile(topDir, 'GECKO_S_cerevisiae');
+addpath(genpath(fullfile(geckoDir, 'geckomat')), '-begin')
+
+% get maximum kcat value
 maxKcatFile = fullfile(geckoDir, 'databases', 'max_KCAT.txt');
 K = retrieveMaxKcat(maxKcatFile,orgName);
 clear maxKcatFile
+
+% model and data files
 modelFile = fullfile(geckoDir, 'models', 'ecYeast', 'rawecYeast.mat');
 batchModelFile = fullfile(geckoDir,  'models', 'ecYeast', 'rawecYeast_batch.mat');
 kcatoriginFile=fullfile(geckoDir, 'models', 'ecYeast', 'ecYeast_kcatOrigins.txt');

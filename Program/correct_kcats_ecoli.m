@@ -1,6 +1,6 @@
 %% Configuration / Input
 clear;clc
-configuration_ecoli
+run(fullfile('Program', 'configuration_ecoli.m'))
 
 % start diary
 diary(logFileName)
