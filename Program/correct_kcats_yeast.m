@@ -1,11 +1,9 @@
 %% Configuration / Input
 clear;clc
-configuration_yeast
-
+run(fullfile('Program', 'configuration_yeast.m'))
 
 % start diary
 diary(logFileName)
-
 
 % set up parallel pool if cross-validation should be run parallelized
 if runParallel

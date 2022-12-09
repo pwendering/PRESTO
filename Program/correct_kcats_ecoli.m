@@ -1,9 +1,9 @@
 %% Configuration / Input
 clear;clc
-configuration_ecoli
+run(fullfile('Program', 'configuration_ecoli.m'))
 
 % start diary
-% diary(logFileName)
+diary(logFileName)
 
 % set up parallel pool if cross-validation should be run parallelized
 if runParallel
