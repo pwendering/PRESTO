@@ -18,26 +18,19 @@ function models = adjBaseModel(model,P,nutrExch,mod_GAM)
 if ~( (numel(P) == size(nutrExch,2)) && (size(nutrExch,2) == numel(mod_GAM)) )
     error('adjBaseModel: incorrect input dimensions')
 end
-%detect modle organism 
-if contains(model.name, 'Escherichia coli', 'IgnoreCase', true)
-    org_name='escherichia coli';
-    %This is suboptimal since a lot of unesescary variables like GAM are
-    %loaded into the namespace... could be improved
-    configuration_ecoli
-elseif contains(model.name, 'Yeast', 'IgnoreCase', true)
-    org_name='saccharomyces cerevisiae';
-    configuration_yeast
-end
 
 % initialize models
 models = cell(1,numel(P));
+geckoDir = char(regexp(which('getModelParameters'), '.*(?=\\geckomat)', 'match'));
+if isempty(geckoDir)
+    error('Organism-specific GECKO directory could not be located, please run configuration script')
+end
+topDir = char(regexp(pwd, '.*PRESTO', 'match'));
+
 for i=1:numel(models)
     % re-scale biomass reaction (GECKO toolbox function)
     cd(fullfile(geckoDir, 'geckomat'))
-    params=getModelParameters();
-    if ~strcmp(params.org_name, org_name)
-        error(['matlab toolbox is not configured for organism ' org_name])
-    end
+    params = getModelParameters();
     %check if cobra toolbox confiuration matches org_name
     cd('limit_proteins/')
     models{i} = scaleBioMass(model,P(i),mod_GAM(i));
