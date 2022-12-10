@@ -393,6 +393,10 @@ if negCorrFlag
     LP_min.lb(deltaIdx(~nzDeltaIdx)) = deltaLB(~nzDeltaIdx);
     LP_min.ub(deltaIdx(~nzDeltaIdx)) = zeros(sum(~nzDeltaIdx),1);
     
+    % also update delta lower bounds in LP that will be returned by the
+    % function
+    LP.lb(deltaIdx(~nzDeltaIdx)) = deltaLB(~nzDeltaIdx);
+    
     % minimize the sum of allowed deltas
     LP_min.c(deltaIdx) = 0;
     LP_min.c(deltaIdx(~nzDeltaIdx)) = lambda / (sum(any(E,2)) - sum(blackListIdx) - sum(nzDeltaIdx));
