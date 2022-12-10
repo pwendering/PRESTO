@@ -23,6 +23,8 @@ function [relErr,errVar,sumDelta,objVal,avJD,corrKcatProts] = cvLambdaFitting(va
 %                       from the given experimental value; default: 0.5
 %   char enzMetPfx:     (optional) prefix for enzyme mass balance constraints
 %                       (i.e. values in model.metNames);default: 'prot_'
+%   char enzRxnPfx:     (optional) prefix for enzyme usage pseudoreactions
+%                       (i.e. values in model.rxns); default: 'prot_'
 %   cellstr enzBlackList:(optional) names of enzyme metabolites that
 %                       should be excluded from the correction
 %                       default: {''}
@@ -73,6 +75,7 @@ nIter = p.Results.nIter;
 epsilon = p.Results.epsilon;
 theta = p.Results.theta;
 enzMetPfx = p.Results.enzMetPfx;
+enzRxnPfx = p.Results.enzRxnPfx;
 enzBlackList = p.Results.enzBlackList;
 runParallel = p.Results.runParallel;
 K = p.Results.K;
@@ -146,7 +149,8 @@ for l=1:numel(lambdaParams)
                 try
                     [solution,tmpModels,~,~,LP] = PRESTO(models,expGrowth(trainIdx),E(:,trainIdx),...
                         'epsilon',epsilon,'lambda',lambdaParams(l),'theta',theta,...
-                        'K',K,'enzBlackList',enzBlackList);
+                        'K',K,'enzBlackList',enzBlackList,'enzMetPfx',enzMetPfx,...
+                        'enzRxnPfx',enzRxnPfx);
                 catch ME
                     log = [log ME.stack(1).name ME.message];
                 end
@@ -220,7 +224,8 @@ for l=1:numel(lambdaParams)
                 try
                     [solution,tmpModels,~,~,LP] = PRESTO(models,expGrowth(trainIdx),E(:,trainIdx),...
                         'epsilon',epsilon,'lambda',lambdaParams(l),'theta',theta,...
-                        'K',K,'enzBlackList',enzBlackList);
+                        'K',K,'enzBlackList',enzBlackList,'enzMetPfx',enzMetPfx,...
+                        'enzRxnPfx',enzRxnPfx);
                 catch ME
                     if contains(ME.message,'Dual optimality')
                         fprintf([repmat('\b',1,length('OPTIMAL')+1) 'INFEASIBLE: Error: '...
@@ -308,6 +313,7 @@ end
         EPSILON_DEFAULT = 1e6;
         THETA_DEFAULT = 0.5;
         ENZ_MET_PFX_DEFAULT = 'prot_';
+        ENZ_RXN_PFX_DEFAULT = 'prot_';
         NUTR_UPT_DEFAULT = table({''},'RowNames',{'empty'});
         PAR_DEFAULT = false;
         K_DEFAULT = 57500000; % Pyrococcus furiosus; 5.3.1.1; D-glyceraldehyde 3-phosphate
@@ -319,11 +325,13 @@ end
         % validation for scalar integer inputs
         validScalarDouble = @(v)~ischar(v)&isscalar(v);
         validScalarInt = @(v)validScalarDouble(v)&(floor(v)==ceil(v));
+        validateModel = @(m)isstruct(m)&isfield(m,'protMW');
+        
         % parse input argument array
         p = inputParser;
         p.FunctionName = 'findBestPerformingSetsByCV';
         
-        addRequired(p,'model',@isstruct)
+        addRequired(p,'model',validateModel)
         addRequired(p,'expGrowth',@isnumeric)
         addRequired(p,'pTot',@isnumeric)
         addRequired(p,'E',@isnumeric)
@@ -334,6 +342,7 @@ end
         addOptional(p,'epsilon',EPSILON_DEFAULT,validScalarDouble)
         addOptional(p,'theta',THETA_DEFAULT,validScalarDouble)
         addOptional(p,'enzMetPfx',ENZ_MET_PFX_DEFAULT,@ischar)
+        addOptional(p,'enzRxnPfx',ENZ_RXN_PFX_DEFAULT,@ischar)
         addOptional(p,'enzBlackList',{''},@iscellstr)
         addOptional(p,'runParallel',PAR_DEFAULT,@islogical)
         addOptional(p,'K',K_DEFAULT,validScalarDouble)
