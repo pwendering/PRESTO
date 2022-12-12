@@ -359,6 +359,14 @@ if negCorrFlag
     LP_min.lb(deltaIdx(nzDeltaIdx)) = deltaVal(nzDeltaIdx) - feasTol;
     LP_min.ub(deltaIdx(nzDeltaIdx)) = deltaVal(nzDeltaIdx) + feasTol;
     
+    % fix uptake fluxes
+    exc_idx = startsWith(LP.rxns, 'EX_');
+    if sum(exc_idx) == 0
+        warning('Step 2: No exchange reactions found that could be fixed.')
+    end
+    LP_min.lb(exc_idx) = solution.x(exc_idx) - 1e-6;
+    LP_min.ub(exc_idx) = solution.x(exc_idx) + 1e-6;
+    
     % set upper bound for sum of relative errors
     omegaIdx = startsWith(LP_min.rxns, 'omega_cond_');
     omegaSumRow = sparse(1, size(LP_min,2));
