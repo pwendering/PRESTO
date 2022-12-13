@@ -91,6 +91,8 @@ lambdaParams = logspace(-14,-1,14);
     'GAM',GAM, 'f', f, 'sigma', sigma);
 save(fullfile('Results','lambda_cv','lambda_fitting_s_cerevisiae'),'relErr','errVar','sumsDelta',...
     'objVal','lambdaParams','corrKcatProts','avJD')
+% find best lambda value
+lambda = selectBestLambda(lambdaParams, relErr, sumsDelta);
 
 %% Run kcat correction with all conditions
 models = adjBaseModel(ecYeastGEM,P,nutrExch,GAM);
