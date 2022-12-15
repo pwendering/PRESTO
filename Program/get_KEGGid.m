@@ -27,6 +27,7 @@ for i=1:numel(startIdx)
     fprintf('Processing IDs %d to %d ...\n',startIdx(i),endIdx)
     tmpIdx = startIdx(i):endIdx;
     tmpGnQuery = pIds(tmpIdx);
+    
     curl_cmd_jobid = ['curl --silent --request POST ' URL ' ',...
         '--form ids="', strjoin(tmpGnQuery,',') '" ',...
         '--form from="UniProtKB_AC-ID" ',...
@@ -56,8 +57,6 @@ for i=1:numel(startIdx)
         [status, job_status_json] = system(curl_cmd_jobstatus);
         if status == 0
             job_status = jsondecode(job_status_json).jobStatus;
-        else
-            error('Job status could not be fetched.')
         end
     end
             
