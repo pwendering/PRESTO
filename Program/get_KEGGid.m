@@ -15,11 +15,12 @@ keggId = cell(0,1);
 GnResponse = cell(0,1);
 URL = 'https://rest.uniprot.org/idmapping/run';
 
-% divide gene names into chunks of 500
-startIdx = 1:100:numel(pIds);
+% divide gene names into chunks
+chunk_size = 100;
+startIdx = 1:chunk_size:numel(pIds);
 for i=1:numel(startIdx)
     if i<numel(startIdx)
-        endIdx = startIdx(i)+99;
+        endIdx = startIdx(i)+(chunk_size-1);
     else
         endIdx = numel(pIds);
     end
