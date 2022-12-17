@@ -30,7 +30,7 @@ trimConds = regexprep(abundance_file.cond,'_replicate\d+','');
 uniqConds = unique(trimConds,'stable');
 E = abundance_file.abun;
 E = cell2mat(arrayfun(@(i)max(E(:,contains(trimConds,uniqConds{i})),[],2),...
-            1:numel(uniqConds),'un',0));
+    1:numel(uniqConds),'un',0));
 
 % take re-ordered subset of matched conditions
 matchIdx = cell2mat(cellfun(@(x)find(ismember(uniqConds,x)),condNames,'un',0));
@@ -50,7 +50,7 @@ nutrExch = array2table(zeros(numel(uniqUptRxns),numel(condNames)),...
 
 for i=1:numel(uniqUptRxns)
     nutrExch{i,ismember(cReact,uniqUptRxns(i))} = nutrUptRates(ismember(cReact,uniqUptRxns(i)))';
-    if ~any(nutrExch{i,:}~=0 & ~isnan(nutrExch{i,:})) 
+    if ~any(nutrExch{i,:}~=0 & ~isnan(nutrExch{i,:}))
         nutrExch{i,isnan(nutrExch{i,:})} = 1000;
     else
         nutrExch{i,isnan(nutrExch{i,:})} = max(nutrExch{i,:});
@@ -64,43 +64,85 @@ gn2upFile = fullfile('Data','Davidi','gene_name_uniprot_acc.csv');
 weboptions.Timeout = 30;
 if ~exist(gn2upFile,'file')
     upId = repmat({''},size(geneIDs));
-    baseURL = 'https://www.uniprot.org';
-    tool = 'uploadlists';
+    URL = 'https://rest.uniprot.org/idmapping/run';
     
-    % divide gene names into chunks of 500
-    startIdx = 1:500:numel(geneIDs);
+    % divide gene names into chunks
+    chunksize = 500;
+    startIdx = 1:chunksize:numel(geneIDs);
     for i=1:numel(startIdx)
         if i<numel(startIdx)
-            endIdx = startIdx(i)+499;
+            endIdx = startIdx(i)+chunksize-1;
         else
             endIdx = numel(geneIDs);
         end
         fprintf('Processing gene names %d to %d ...\n',startIdx(i),endIdx)
         tmpGeneIdx = startIdx(i):endIdx;
         tmpGnQuery = geneIDs(tmpGeneIdx);
-        url = [baseURL '/' tool '/',...
-            '?query=',strjoin(tmpGnQuery,','),...
-            '&format=tab',...
-            '&from=GENENAME',...
-            '&to=ACC'...
-            '&columns=id,organism'...
-            ];
-        % send request
-        data = webread(url);
-        % process output from webread to cell array with an entry for each
-        % row
-        rows = strsplit(strtrim(data),'\n');
-        rows = rows(contains(rows,'Escherichia coli (strain K12)'));
-        rows = cellfun(@strsplit,rows,'un', 0);
-        % extract gene names to match with input gene names for the case
-        % that not all IDs were matched
-        tmpGnResponse = cellfun(@(x)x(end),rows);
+        
+        curl_cmd_jobid = ['curl --silent --request POST ' URL ' ',...
+            '--form ids="', strjoin(tmpGnQuery,',') '" ',...
+            '--form from="Gene_Name" ',...
+            '--form to="UniProtKB"'];
+        
+        % send requestto retrieve job ID
+        status = 1;
+        trials = 0;
+        while status ~= 0 && trials < 3
+            trials = trials + 1;
+            [status, job_id_json] = system(curl_cmd_jobid);
+        end
+        
+        if status ~= 0
+            error('Request not successful after %i attempts', trials)
+        else
+            job_id = jsondecode(job_id_json).jobId;
+        end
+        
+        % wait until job is finished
+        job_status = '';
+        curl_cmd_jobstatus = ['curl --silent https://rest.uniprot.org/idmapping/status/' ...
+            job_id];
+        tic
+        t = 0;
+        while ~isequal(job_status, 'FINISHED') && t < 120
+            t = toc;
+            [status, job_status_json] = system(curl_cmd_jobstatus);
+            if status == 0
+                job_status = jsondecode(job_status_json).jobStatus;
+            end
+        end
+        
+        % get job results
+        curl_cmd_jobresult = ['curl --silent https://rest.uniprot.org/idmapping/uniprotkb/results/' ...
+            job_id '?fields=organism_name'];
+        [status, job_result_json] = system(curl_cmd_jobresult);
+        if status == 0
+            job_result_struct = jsondecode(job_result_json).results;
+            job_resuls_from = arrayfun(@(i)job_result_struct(i).from,...
+                1:numel(job_result_struct),'UniformOutput',false)';
+            job_resuls_to = arrayfun(@(i)job_result_struct(i).to.primaryAccession,...
+                1:numel(job_result_struct),'UniformOutput',false)';
+            job_resuls_org = arrayfun(@(i)job_result_struct(i).to.organism.scientificName,...
+                1:numel(job_result_struct),'UniformOutput',false)';
+            job_result_table = cell2table([job_resuls_from job_resuls_to job_resuls_org],...
+                'VariableNames', {'from', 'to', 'organism'});
+        else
+            error('Job results could not be fetched')
+        end
+        
+        % filter out non-organism specific hits
+        keep_idx = cellfun(@(x)startsWith(x,...
+            'Escherichia coli (strain K12)'),...
+            job_result_table.organism);
+        job_result_table = job_result_table(keep_idx, :);
+        
+        tmpGnResponse = job_result_table.from;
         matchIdx = cellfun(@(x)find(ismember(tmpGnQuery,x)),tmpGnResponse);
         if numel(matchIdx)<numel(tmpGeneIdx)
             fprintf('\tGene ID could not be translated: %s\n',...
                 tmpGnQuery{setdiff(1:numel(matchIdx),matchIdx)})
         end
-        upId(tmpGeneIdx(matchIdx)) = cellfun(@(x)x(1),rows);
+        upId(tmpGeneIdx(matchIdx)) = job_result_table.to;
     end
     gn2up = cell2table([geneIDs upId],'VariableNames', {'GENENAME', 'ID'});
     writetable(gn2up,gn2upFile)
