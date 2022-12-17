@@ -1,23 +1,35 @@
-function[relError, Mu] = comp_condmod(models, org_name, test_unseen, prot_cor)
+function[relError, Mu, pred_E, fluxVar] = comp_condmod(models, org_name, test_unseen, prot_cor)
 %Function to run the benchmarking using the respective Ptot and
 %biomass function for each condition.
 %INPUT:
 % - struc models;: a cell array of model structures.
 % - char org_name:  The model organism
 % - logical test_unseen: optional logical if ture models will be
-%                                       validated in all conditions, if false only in the one they 
-%                                       are build for. defaul: true
+%                        validated in all conditions, if false only in 
+%                        the one they are build for. If true relError and Mu 
+%                        cell arrays contain a matrix (conditions x models) else
+%                        they only contain a vector where each model is validated in 
+%                        respective condition. If true pred_E and fluxVar
+%                        return a matrix (condition x models x values) 
+%                        else a matrix 2D matrix where each row corresponds to one
+%                        condition specific model prediction/variance 
+%                        defaul: true
 % - logical prot_cor: optional logical if true total abundancy values are
 %                       corrected by the correction factor. default: false
 %OUTPUT:
 % - cell relError:  1x5 cell giving the relative error for models
 %                   constrained by: 1 - total protein pool constrain,
-%                   2-experimental uptake rates (if available else 1=2), 3
+%                   2-pool + experimental uptake rates (if available else 1=2), 3
 %                   pool, uptake + absolute protein abundancies, 4- only
 %                   absolute protein abundancies 5- only experimental
 %                   uptake rates (if available, else large overprediction)
-% - cell Mu:    1x5 cell giving the respective predicted growht rates (s.
+% - cell Mu:    1x5 cell giving the respective predicted growth rates (s.
 %               relError)
+% - double pred_E:     matrix (conditions x models x enzRxns giving the predicted enyzme usage 
+%                      coefficients with  no constrains on uptake 
+% - double fluxVar: matrix (conditions x models x rxns) giving the flux
+%                   ranges calculated using FVA in the szenario constrained
+%                   with pool, uptake and absolute protein abundance
 if nargin<3
     test_unseen=true;
 elseif ~test_unseen
@@ -100,6 +112,8 @@ E_0=zeros(length(models{1}.enzymes), length(condNames));
 %Intialize array of unbound model results
 unbError=nan(length(condNames), length(models));
 unbMu=nan(length(condNames), length(models));
+%Initialize a 3D arrazy to store enzyme usage predictions
+unbpredE=nan(length(condNames), length(models), length(enzRxnIdx));
 %Initialize array of experimental uptake rate bounds results
 bError=nan(length(condNames), length(models));
 bMu=nan(length(condNames), length(models));
@@ -107,6 +121,9 @@ if enz_mappable
     %intialize array for for corrected proteomic constrains
     pbcorError=nan(length(condNames), length(models));
     pbcorMu=nan(length(condNames), length(models));
+    if nargout>3
+        fluxVar=nan(length(condNames), length(models), length(models{1}.rxns));
+    end
     %intitalize array with experimental + proteomics constrains
     %but without the enzyme pool constrain
     pbnopoolError=nan(length(condNames), length(models));
@@ -140,18 +157,24 @@ for i=1:length(models)
         %create a model with experimental measured uptakte rates and
         %liftet pool constrain
         bnopoolmod=changeRxnBounds(bmod, bmod.rxns(end), inf, 'u');
-        %switch constain on enzyme usage rates back to 1000
+        %switch constrain on enzyme usage rates back to 1000
         bnopoolmod.ub(enzRxnIdx)=1000;
-        %Calculate prediction error of grwoth rate for all conunEditions
-        [unbError(j,i),unbMu(j,i)] = scoreKcatCorrection(unbmod,expVal(j),...
-            E_0(:,j),enzRxnIdx, true );
+        %Calculate prediction error of grwoth rate for all conditions
+        %without uptake fluxes
+        [unbError(j,i),unbMu(j,i), unbpredE(j,i,:)] = scoreKcatCorrection(unbmod,expVal(j),...
+            E_0(:,j),enzRxnIdx, true, {'predE'});
         %Calculate prediction error of grwoth rate for all conditions
         [bError(j,i),bMu(j,i)] = scoreKcatCorrection(bmod,expVal(j),...
             E_0(:,j),enzRxnIdx, true);
         if enz_mappable
             %solve model with relaxed proteomics constrains
-            [pbcorError(j,i),pbcorMu(j,i)] = scoreKcatCorrection(bmod,expVal(j),...
+            if nargout>3
+            [pbcorError(j,i),pbcorMu(j,i), fluxVar(j,i,:)] = scoreKcatCorrection(bmod,expVal(j),...
+                nsparseE(enzMetRxnMatch,j),enzRxnIdx, true, {'FVA'});
+            else
+                [pbcorError(j,i),pbcorMu(j,i)] = scoreKcatCorrection(bmod,expVal(j),...
                 nsparseE(enzMetRxnMatch,j),enzRxnIdx, true);
+            end
             %solve model with relaxed proteomics constrains only for enzymes 
             %quantified in all conditions and experimental constrains
             %but without protein pool constrain to compare with presto
@@ -172,6 +195,7 @@ for i=1:length(models)
 end
 relError={unbError, bError};
 Mu={unbMu, bMu};
+pred_E=unbpredE;
 if enz_mappable
     relError=[relError, {pbcorError, pbnopoolError, bnopoolError}];
     Mu=[Mu, {pbcorMu, pbnopoolMu, bnopoolMu}];
@@ -181,5 +205,15 @@ if ~test_unseen
     for i=1:length(relError)
         relError{i}=diag(relError{i});
         Mu{i}=diag(Mu{i});
+    end
+    for i=1:size(pred_E,3)
+        pred_E(:,1,i)=diag(pred_E(:,:,i));
+    end
+    pred_E=squeeze(pred_E(:,1,:));
+    if nargout>3
+        for i=1:size(fluxVar,3)
+            fluxVar(:,1,i)=diag(fluxVar(:,:,i));
+        end
+        fluxVar=squeeze(fluxVar(:,1,:));
     end
 end

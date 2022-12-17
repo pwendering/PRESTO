@@ -1,4 +1,4 @@
-function [relError, Mu, maxrelError, maxMu, maxpredE, maxfluxvar, max_gkomod] = comp_GKOcondmod (moddir, logfile, org_name, prot_cor)
+function [relError, Mu, predE, maxrelError, maxMu, maxpredE, maxfluxvar, max_gkomod] = comp_GKOcondmod (moddir, logfile, org_name, prot_cor)
 % Function to compare produced GECKO models for Yeast model and 
 %Chen et al data
 %INPUT: 
@@ -92,7 +92,7 @@ else
 end
     
 %report performance for all gecko models
-[relError, Mu]=comp_condmod(models,org_name, true, prot_cor);
+[relError, Mu, predE]=comp_condmod(models,org_name, true, prot_cor);
 %report performance for maximum correction model 
 [maxrelError, maxMu, maxpredE, maxfluxvar]=comp_condmod(repelem({max_gkomod}, length(condNames)), org_name, false, prot_cor);
 %if there are less models then conditions reorder them previous now
