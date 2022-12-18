@@ -25,8 +25,12 @@ function[relError, Mu, pred_E, fluxVar] = comp_condmod(models, org_name, test_un
 %                   uptake rates (if available, else large overprediction)
 % - cell Mu:    1x5 cell giving the respective predicted growth rates (s.
 %               relError)
-% - double pred_E:     matrix (conditions x models x enzRxns giving the predicted enyzme usage 
-%                      coefficients with  no constrains on uptake 
+% - double pred_E:  1x2 cell array containing the spearman correlation 
+%                   between enzyme usage predicted with fixed measured 
+%                   growth rate and 1- the set of proteins used for
+%                   correction by PRESTO (non sparse measurements), 2- all
+%                   proteins annotated in the model (proteins without
+%                   measurement are considered as 0 abundance)
 % - double fluxVar: matrix (conditions x models x rxns) giving the flux
 %                   ranges calculated using FVA in the szenario constrained
 %                   with pool, uptake and absolute protein abundance
@@ -86,12 +90,11 @@ if enz_mappable
         if isnan(protCorrFact)
             error('protCorrFact is not declared, corrected protein abundancies not available')
         end
-        nsparseE=(protCorrFact.*E')';
-    else
-        nsparseE=E;
+        E=(protCorrFact.*E')';
     end
     %create enzyme constrains only for proteins measured in all conditions
-     nsparseE(~all(nsparseE,2),:) = 0;
+    nsparseE=E;
+    nsparseE(~all(E,2),:) = 0;
 end
 
 %create default maximum condition specific uptake rates
@@ -112,8 +115,10 @@ E_0=zeros(length(models{1}.enzymes), length(condNames));
 %Intialize array of unbound model results
 unbError=nan(length(condNames), length(models));
 unbMu=nan(length(condNames), length(models));
-%Initialize a 3D arrazy to store enzyme usage predictions
-unbpredE=nan(length(condNames), length(models), length(enzRxnIdx));
+%Initialize a arraz to store correlation of enzyme usage predictions and
+%experimental values
+unbpredE_nsparse=nan(length(condNames), length(models)); %For PRESTO used Protein set
+unbpredE=nan(length(condNames), length(models)); %For all enzymes
 %Initialize array of experimental uptake rate bounds results
 bError=nan(length(condNames), length(models));
 bMu=nan(length(condNames), length(models));
@@ -161,12 +166,17 @@ for i=1:length(models)
         bnopoolmod.ub(enzRxnIdx)=1000;
         %Calculate prediction error of grwoth rate for all conditions
         %without uptake fluxes
-        [unbError(j,i),unbMu(j,i), unbpredE(j,i,:)] = scoreKcatCorrection(unbmod,expVal(j),...
+        [unbError(j,i),unbMu(j,i), tempredE] = scoreKcatCorrection(unbmod,expVal(j),...
             E_0(:,j),enzRxnIdx, true, {'predE'});
         %Calculate prediction error of grwoth rate for all conditions
         [bError(j,i),bMu(j,i)] = scoreKcatCorrection(bmod,expVal(j),...
             E_0(:,j),enzRxnIdx, true);
         if enz_mappable
+            %calculate correlation between predicted and used E for enzymes
+            %measured in all condition or over all enzymes
+            unbpredE(j,i)=corr(E(enzMetRxnMatch, j), tempredE, 'type', 'Spearman');
+            compE=nsparseE(enzMetRxnMatch,j);
+            unbpredE_nsparse(j,i)=corr(compE(compE>0), tempredE(compE>0), 'type', 'Spearman');
             %solve model with relaxed proteomics constrains
             if nargout>3
             [pbcorError(j,i),pbcorMu(j,i), fluxVar(j,i,:)] = scoreKcatCorrection(bmod,expVal(j),...
@@ -195,8 +205,8 @@ for i=1:length(models)
 end
 relError={unbError, bError};
 Mu={unbMu, bMu};
-pred_E=unbpredE;
 if enz_mappable
+    pred_E={unbpredE_nsparse, unbpredE};
     relError=[relError, {pbcorError, pbnopoolError, bnopoolError}];
     Mu=[Mu, {pbcorMu, pbnopoolMu, bnopoolMu}];
 end
@@ -206,10 +216,9 @@ if ~test_unseen
         relError{i}=diag(relError{i});
         Mu{i}=diag(Mu{i});
     end
-    for i=1:size(pred_E,3)
-        pred_E(:,1,i)=diag(pred_E(:,:,i));
+    for i=1:length(pred_E)
+        pred_E{i}=diag(pred_E{i});
     end
-    pred_E=squeeze(pred_E(:,1,:));
     if nargout>3
         for i=1:size(fluxVar,3)
             fluxVar(:,1,i)=diag(fluxVar(:,:,i));
