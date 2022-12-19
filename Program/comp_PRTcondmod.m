@@ -26,7 +26,7 @@ switch org_name
     case 'saccharomyces cerevisiae'
         configuration_yeast
         condNames=readChenetal(topDir, [], true);
-        %set label for pfba dataset used for comparison 
+        %set label for pfba dataset used for comparison
         pfbalab='Chen';
         %Create alternative cond_name prefixes according to carbon source
         altcondNames=strrep(condNames, 'Yu2021', 'Y21');
@@ -40,11 +40,16 @@ switch org_name
         altcondNames=cell(length(condNames), 1);
 
         for i=1:length(condNames)
-           tmpSplit=strsplit(condNames{i}, '_');
-           altcondNames{i}=strjoin([tmpSplit(end), tmpSplit(1:(end-1))], '_');
+            tmpSplit=strsplit(condNames{i}, '_');
+            altcondNames{i}=strjoin([tmpSplit(end), tmpSplit(1:(end-1))], '_');
         end
-        %set lebel for pfba dataset used for comparison 
+        %set lebel for pfba dataset used for comparison
         pfbalab='Davidi';
+        %For now just load model with minimzed kcats in second step
+        maxmin_mod=readGKOmodel(fullfile('Data', 'model_max_min_deltas.mat'));
+        maxmin_batch_models=addGKOconstrains(maxmin_mod, org_name);
+        %calculate performacnce for these models
+        [maxmin_relE, ~, maxmin_predE] = comp_condmod(maxmin_batch_models, org_name, false, prot_cor);
 end
 
 batch_models=addGKOconstrains(models, org_name);
@@ -52,11 +57,7 @@ batch_models=addGKOconstrains(models, org_name);
 %differenc conditions
 [relE, Mu, predE, fluxvar]=comp_condmod(batch_models, org_name, false, prot_cor);
 
-%For now just load model with minimzed kcats in second step 
-maxmin_mod=readGKOmodel(fullfile('Data', 'model_max_min_deltas.mat'));
-maxmin_batch_models=addGKOconstrains(maxmin_mod, org_name);
-%calculate performacnce for these models 
-[maxmin_relE, ~, maxmin_predE] = comp_condmod(maxmin_batch_models, org_name, false, prot_cor);
+
 if ~isempty(figprefix)
     %add figure prefix to file 
     switch org_name
