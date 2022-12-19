@@ -82,7 +82,7 @@ catch ME
     warning(ME.message)
     disp("Modelling error. Setting solution to NaN")
     mu_pred=NaN;
-    if nargin>2
+    if nargout>2
         varargout={};
         if ismember('FVA', optout)
             varargout=[varargout, {nan(length(model.rxns),1)}];
