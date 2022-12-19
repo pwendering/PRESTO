@@ -33,6 +33,8 @@ switch org_name
         altcondNames=strrep(altcondNames, 'Yu2020', 'Y20');
         altcondNames=strrep(altcondNames, 'Lahtvee2017', 'L');
         altcondNames=strrep(altcondNames, 'DiBartolomeo2020', 'D');
+        maximin_relE={};
+        maxmin_predD={};
     case 'escherichia coli'
         configuration_ecoli
         condNames=readDavidi2016([],topDir);
@@ -96,9 +98,15 @@ kcat_comptab=comp_kcat2(models{1}, max_gkomod, 'Protein',figprefix);
 %% rel Error all GECKO and PRESTO (Figure 2 among others)
 %Use shortened condition names for plot labels
 plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), altcondNames, figprefix, topDir)
-
+if ~isempty(maxmin_relE)
+    %plot a supplementary plot with the min model performance
+    plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), altcondNames, [figprefix '_maxmin'], topDir, maxmin_relE([1 2 3 5]))
+end
 %plot relative Error of 
 plotFIGrelE3(relE(1:3), maxgkorelE(1:3), pFBArelE(1:3), [figprefix '_pFBAscat'], topDir, pfbalab);
 
+%plot figure of spearman correlation between measured and corrected 
+plotFIGpredE(predE, gkopredE, altcondNames, figprefix, topDir)
+plotFIGvrange(fluxvar, maxgkofluxvar, batch_models{1}, enzRxnPfx, altcondNames, figprefix, topDir)
 end
 end
