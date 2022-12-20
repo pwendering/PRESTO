@@ -1,4 +1,4 @@
-function plotFIGpredE(prspredE, gkopredE, condNames, fileprfx, topDir)
+function plotFIGpredE(prspredE, gkopredE, condNames, fileprfx, topDir, maxmin_predE)
 % Function to plots 
 %-  comparison of predicted growth in PRESTO and all GECKO models for each
 %   constraint szenario seperately (FIG 2; FIG 4)
@@ -22,6 +22,12 @@ function plotFIGpredE(prspredE, gkopredE, condNames, fileprfx, topDir)
 % -cell condNames: cell of character vectors giving the condition names
 % -char fileprfx: character vector giving the prefix for saved svg files
 % -char topDir: directory to save results in
+% -cell maxmin_predE:    (optional, default {})cell array of the relative errors for a PRESTO
+%                       model with additionally down corrected kcats same
+%                       format as prsrelE.
+if nargin<6
+    maxmin_predE={};
+end
 
 resdir=fullfile(topDir, 'Results', 'relE');
 if ~isdir(resdir)
@@ -62,12 +68,18 @@ for d=1:2
 %             'MarkerEdgeColor', 'none',  'MarkerFaceColor', 'black', 'Marker', 'o',  'MarkerFaceAlpha', 0.35);
 %     end
     pl(length(condNames)+1)=scatter(1:numel(condNames),abs(prspredE{d}(order)), [], 'MarkerFaceColor', 'red', 'MarkerEdgeColor','none','Marker', 'd', 'SizeData', 30, 'MarkerFaceAlpha', 0.8);
-    ylabel('relative error')
+    if ~isempty(maxmin_predE)
+        pl(length(condNames)+2)=scatter(1:numel(condNames),abs(maxmin_predE{d}(order)), [], 'MarkerFaceColor', 'cyan', 'MarkerEdgeColor','none','Marker', 'd', 'SizeData', 30, 'MarkerFaceAlpha', 0.8);
+        vals=abs([gkopredE{d}, prspredE{d}, maxmin_predE{d}]);
+    else
+        vals=abs([gkopredE{d}, prspredE{d}]);
+    end
+    ylabel('Spearman Correlation')
     %create padding in y axis
     pad=0.025;
-    maxylim=max(abs([gkopredE{d}, prspredE{d}]), [], 'all', 'omitnan');
+    maxylim=max(vals, [], 'all', 'omitnan');
     maxylim=maxylim*(1+pad);
-    minylim=min(abs([gkopredE{d}, prspredE{d}]), [], 'all', 'omitnan')-maxylim*pad;
+    minylim=min(vals, [], 'all', 'omitnan')-maxylim*pad;
     ylim([minylim, maxylim]);
     set(gca, 'Box', 'off')
     if (d~=2)
@@ -76,7 +88,11 @@ for d=1:2
         xticks(1:numel(condNames))
         xticklabels(condNames(order))
         xtickangle(75)
-        l=legend([pl(1) pl(numel(condNames)+1)], 'GECKO', 'PRESTO');
+        if isempty(maxmin_predE)
+            l=legend([pl(1) pl(numel(condNames)+1)], 'GECKO', 'PRESTO');
+        else
+            l=legend([pl(1) pl(numel(condNames)+1) pl(numel(condNames)+2)], 'GECKO', 'PRESTO','PRESTO + min');
+        end
         l.Location='southeast';
     end
     hold off

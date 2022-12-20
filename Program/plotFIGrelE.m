@@ -97,14 +97,17 @@ for d=1:3
 %     end
     pl(length(condNames)+1)=scatter(1:numel(condNames),abs(prsrelE{d}(order)), [], 'MarkerFaceColor', 'red', 'MarkerEdgeColor','none','Marker', 'd', 'SizeData', 30, 'MarkerFaceAlpha', 0.8);
     if ~isempty(maxmin_relE)
-         pl(length(condNames)+2)=scatter(1:numel(condNames),abs(maxmin_relE{d}(order)), [], 'MarkerFaceColor', 'cyan', 'MarkerEdgeColor','none','Marker', 'd', 'SizeData', 30, 'MarkerFaceAlpha', 0.8);
+        pl(length(condNames)+2)=scatter(1:numel(condNames),abs(maxmin_relE{d}(order)), [], 'MarkerFaceColor', 'cyan', 'MarkerEdgeColor','none','Marker', 'd', 'SizeData', 30, 'MarkerFaceAlpha', 0.8);
+        vals=abs([gkorelE{d}, prsrelE{d}, maxmin_relE{d}]);
+    else
+        vals=abs([gkorelE{d}, prsrelE{d}]);
     end
     ylabel('relative error')
     %create padding in y axis
     pad=0.025;
-    maxylim=max(abs([gkorelE{d}, prsrelE{d}]), [], 'all', 'omitnan');
+    maxylim=max(vals, [], 'all', 'omitnan');
     maxylim=maxylim*(1+pad);
-    minylim=min(abs([gkorelE{d}, prsrelE{d}]), [], 'all', 'omitnan')-maxylim*pad;
+    minylim=min(vals, [], 'all', 'omitnan')-maxylim*pad;
     ylim([minylim, maxylim]);
     set(gca, 'Box', 'off')
     if (d~=3)
