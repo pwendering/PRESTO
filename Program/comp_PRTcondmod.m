@@ -33,13 +33,13 @@ switch org_name
         altcondNames=strrep(altcondNames, 'Yu2020', 'Y20');
         altcondNames=strrep(altcondNames, 'Lahtvee2017', 'L');
         altcondNames=strrep(altcondNames, 'DiBartolomeo2020', 'D');
-        maximin_relE={};
-        maxmin_predD={};
+        maxmin_relE={};
+        maxmin_predE={};
     case 'escherichia coli'
         configuration_ecoli
         condNames=readDavidi2016([],topDir);
         %Put the study abbrevation at the beginning of the strind
-        altcondNames=cell(length(condNames), 1);
+        altcondNames=cell(1,length(condNames));
 
         for i=1:length(condNames)
             tmpSplit=strsplit(condNames{i}, '_');
