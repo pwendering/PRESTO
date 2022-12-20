@@ -13,7 +13,7 @@ function[relError, Mu, pred_E, fluxVar] = comp_condmod(models, org_name, test_un
 %                        return a matrix (condition x models x values) 
 %                        else a matrix 2D matrix where each row corresponds to one
 %                        condition specific model prediction/variance 
-%                        defaul: true
+%                        default: true
 % - logical prot_cor: optional logical if true total abundancy values are
 %                       corrected by the correction factor. default: false
 %OUTPUT:

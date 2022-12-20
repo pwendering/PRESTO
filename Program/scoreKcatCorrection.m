@@ -51,43 +51,46 @@ model.ub(enzRxnIdx(E>0)) = E(E>0);
 try
     solution = optimizeCbModel(model);
     mu_pred = solution.f;
-    if nargout>2
-        varargout={};
-        if ismember('FVA', optout)
-            if isempty(gcp('nocreate'))
-                warning('No parallel pool detected, FVA with GECKO models will likely take considerable runtime (days)')
-            end
-            %Do flux variability analysis with solutions at least 99% of
-            %optimal objective value
-            [vmin, vmax]= fluxVariability(model, 99);
-            varargout=[varargout, {vmax-vmin}];
-        end
-        if ismember('predE', optout)
-            if any(E>0)
-                error("Enzyme usage can not be predicted if proteomics data is used as constrain")
-            end
-            %release enzyme pool contrain
-            model.ub(end)=inf;
-            %fix growth rate to measured 
-            model.ub(logical(model.c))=mu;
-            model.lb(logical(model.c))=0.99*mu;
-            model.c(logical(model.c))=0;
-            %change optimization target to minimize enzyme pool
-            model.c(end)=-1;
-            solution2=optimizeCbModel(model);
-            varargout=[varargout, {solution2.v(enzRxnIdx)}];
-        end
-    end
 catch ME
     warning(ME.message)
-    disp("Modelling error. Setting solution to NaN")
+    disp("Modelling error in FBA. Setting solution to NaN")
     mu_pred=NaN;
-    if nargout>2
-        varargout={};
-        if ismember('FVA', optout)
+end
+if nargout>2
+    varargout={};
+    if ismember('FVA', optout)
+        if isempty(gcp('nocreate'))
+            warning('No parallel pool detected, FVA with GECKO models will likely take considerable runtime (days)')
+        end
+        %Do flux variability analysis with solutions at least 99% of
+        %optimal objective value
+        try
+            [vmin, vmax]= fluxVariability(model, 97);
+            varargout=[varargout, {vmax-vmin}];
+        catch ME
+            warning(ME.message)
+            disp("Modelling error in FVA. Setting solution to NaN")
             varargout=[varargout, {nan(length(model.rxns),1)}];
         end
-        if ismember('predE', optout)
+    end
+    if ismember('predE', optout)
+        if any(E>0)
+            error("Enzyme usage can not be predicted if proteomics data is used as constrain")
+        end
+        %release enzyme pool contrain
+        model.ub(end)=inf;
+        %fix growth rate to measured
+        model.ub(logical(model.c))=mu;
+        model.lb(logical(model.c))=0.99*mu;
+        model.c(logical(model.c))=0;
+        %change optimization target to minimize enzyme pool
+        model.c(end)=-1;
+        try
+            solution2=optimizeCbModel(model);
+            varargout=[varargout, {solution2.v(enzRxnIdx)}];
+        catch ME
+            warning(ME.message)
+            disp("Modelling error in minimize enzyme pool FBA. Setting solution to NaN")
             varargout=[varargout, {nan(length(enzRxnIdx),1)}];
         end
     end
