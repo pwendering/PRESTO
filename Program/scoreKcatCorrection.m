@@ -65,7 +65,7 @@ if nargout>2
         %Do flux variability analysis with solutions at least 99% of
         %optimal objective value
         try
-            [vmin, vmax]= fluxVariability(model, 97);
+            [vmin, vmax]= fluxVariability(model, 90);
             varargout=[varargout, {vmax-vmin}];
         catch ME
             warning(ME.message)
