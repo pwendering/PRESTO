@@ -29,7 +29,6 @@ function plotFIGvrange(fluxvar, maxgkofluxvar, batch_model, enzRxnPfx, condNames
     boxchart(categorical(plotdat.Condition), plotdat.Range, 'GroupByColor', categorical(plotdat.Modeltype))
     xax=get(gca, 'XAxis');
     xax.TickLabelInterpreter='none';
-    set(0, 'DefaultAxesTickLabelInterpreter', 'tex')
     legend('Location', 'southeast')
     ylabel('Flux ranges')
     set(gcf, 'PaperUnits', 'inches');
