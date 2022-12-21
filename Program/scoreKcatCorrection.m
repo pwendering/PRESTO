@@ -62,7 +62,7 @@ if nargout>2
         if isempty(gcp('nocreate'))
             warning('No parallel pool detected, FVA with GECKO models will likely take considerable runtime (days)')
         end
-        %Do flux variability analysis with solutions at least 99% of
+        %Do flux variability analysis with solutions at least 90% of
         %optimal objective value
         try
             [vmin, vmax]= fluxVariability(model, 90);
