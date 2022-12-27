@@ -70,7 +70,7 @@ if ~isempty(figprefix)
     end
     
     %get gekco model perfomance for comparison
-[gkorelE, ~, gkopredE, maxgkorelE, ~, maxgkopredE, maxgkofluxvar, max_gkomod]=comp_GKOcondmod(fullfile(geckoDir, 'models'), gkologFile, org_name, prot_cor);
+[gkorelE, ~, gkopredE, kcat_overlap, maxgkorelE, ~, maxgkopredE, maxgkofluxvar, max_gkomod]=comp_GKOcondmod(fullfile(geckoDir, 'models'), gkologFile, org_name, prot_cor);
 
 %generate result path
 if ~isdir(fullfile(topDir, 'Results', 'relE'))
@@ -110,5 +110,7 @@ end
 plotFIGrelE3(relE(1:3), maxgkorelE(1:3), pFBArelE(1:3), [figprefix '_pFBAscat'], topDir, pfbalab);
 
 plotFIGvrange(fluxvar, maxgkofluxvar, batch_models{1}, enzRxnPfx, altcondNames, figprefix, topDir)
+%plot a heatmap of kcat corrections
+plotFIGKcatOvlp(ovlp, altcondNames, figprefix,  topDir)
 end
 end

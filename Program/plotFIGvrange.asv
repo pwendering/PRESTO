@@ -38,7 +38,7 @@ function plotFIGvrange(fluxvar, maxgkofluxvar, batch_model, enzRxnPfx, condNames
     yticklabels(strcat('10^{', ytl, '}'))
     yax=get(gca, 'YAxis');
     yax.TickLabelInterpreter='tex';
-    xax=get(gca, 'XAxis');
-    xax.TickLabelInterpreter='none';
+        yax=get(gca, 'YAxis');
+    yax.TickLabelInterpreter='tex';
     saveas(gcf, fullfile(resdir, [fileprfx '_fluxranges.svg']))
 end
