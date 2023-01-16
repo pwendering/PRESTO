@@ -111,6 +111,6 @@ plotFIGrelE3(relE(1:3), maxgkorelE(1:3), pFBArelE(1:3), [figprefix '_pFBAscat'],
 
 plotFIGvrange(fluxvar, maxgkofluxvar, batch_models{1}, enzRxnPfx, altcondNames, figprefix, topDir)
 %plot a heatmap of kcat corrections
-plotFIGKcatOvlp(ovlp, altcondNames, figprefix,  topDir)
+plotFIGKcatOvlp(kcat_overlap, altcondNames, figprefix,  topDir)
 end
 end
