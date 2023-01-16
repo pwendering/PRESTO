@@ -94,9 +94,8 @@ writetable(nopool_relEtab, fullfile('Results', 'relE', [figprefix, 'nopool_relE.
 %overlap, save a boolean table indicating whhich kcats are changed in the
 %manual modifications, GECKO and PRESTO and save a table with the actual
 %corrected values of PRESTO and GECKO (Supplementary Table S2,3)
-%kcat_comptab=comp_kcat2(models{1}, max_gkomod, 'Protein',figprefix);
-%plot for no uptake and proteomics constrains for bestmod
-%for all
+kcat_comptab=comp_kcat2(models{1}, max_gkomod, 'Protein',figprefix);
+
 
 %% rel Error all GECKO and PRESTO (Figure 2 among others)
 %Use shortened condition names for plot labels
