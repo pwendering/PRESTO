@@ -16,7 +16,7 @@ if contains(raw_batchmod.name, 'Escherichia coli', 'IgnoreCase', true)
     map=map(~cellfun(@isempty, map.final_match),[1,4]);
     %duplicate isozyme entries. 
 elseif contains(raw_batchmod.name, 'Yeast', 'IgnoreCase', true)
-    kapp=readtable('Data/Chen/chen_kmax.xlsx', 'Sheet', 'kmax 1s');
+    kapp=readtable('Data/Chen/chen_kmax.xlsx', 'Sheet', 'Dataset S4');
     %adapting naming 
     kapp.Properties.VariableNames([1 6])={'ReactionID', 'kappmax'};
     %get reaction mapping information
