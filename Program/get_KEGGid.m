@@ -28,7 +28,7 @@ for i=1:numel(startIdx)
     tmpIdx = startIdx(i):endIdx;
     tmpGnQuery = pIds(tmpIdx);
     
-    curl_cmd_jobid = ['curl --silent --request POST ' URL ' ',...
+    curl_cmd_jobid = ['curl -k --silent --request POST ' URL ' ',...
         '--form ids="', strjoin(tmpGnQuery,',') '" ',...
         '--form from="UniProtKB_AC-ID" ',...
         '--form to="KEGG"'];
@@ -48,7 +48,7 @@ for i=1:numel(startIdx)
     
     % wait until job is finished
     job_status = '';
-    curl_cmd_jobstatus = ['curl --silent https://rest.uniprot.org/idmapping/status/' ...
+    curl_cmd_jobstatus = ['curl -k --silent https://rest.uniprot.org/idmapping/status/' ...
         job_id];
     tic
     t = 0;
@@ -61,7 +61,7 @@ for i=1:numel(startIdx)
     end
             
     % get job results
-    curl_cmd_jobresult = ['curl --silent https://rest.uniprot.org/idmapping/results/' ...
+    curl_cmd_jobresult = ['curl -k --silent https://rest.uniprot.org/idmapping/results/' ...
         job_id];
     [status, job_result_json] = system(curl_cmd_jobresult);
     if status == 0
