@@ -61,7 +61,7 @@ for i=1:numel(startIdx)
     end
             
     % get job results
-    curl_cmd_jobresult = ['curl -k --silent https://rest.uniprot.org/idmapping/results/' ...
+    curl_cmd_jobresult = ['curl -k --silent https://rest.uniprot.org/idmapping/stream/' ...
         job_id];
     [status, job_result_json] = system(curl_cmd_jobresult);
     if status == 0
