@@ -15,10 +15,8 @@ function [relErr,errVar,sumDelta,objVal,avJD,corrKcatProts] = cvLambdaFitting(va
 %                       default: 3
 %   double nIter:       (optional) number of iterations for cross-valiation;
 %                       default: 10
-%   logical randomize:  (optional) whether sets should be chosen at random
-%                       or consecutively into groups of size setSize
 %   double epsilon:     (optional) maximum fold change of kcats
-%                       (default: 1e6)
+%                       (default: 1e5)
 %   double theta:       (optional) allowed deviation of the predicted growth rate
 %                       from the given experimental value; default: 0.5
 %   char enzMetPfx:     (optional) prefix for enzyme mass balance constraints
@@ -318,7 +316,7 @@ end
     function p = parseInput(arguments)
         % define default variables
         FOLD_DEFAULT = 3;
-        EPSILON_DEFAULT = 1e6;
+        EPSILON_DEFAULT = 1e5;
         THETA_DEFAULT = 0.5;
         ENZ_MET_PFX_DEFAULT = 'prot_';
         ENZ_RXN_PFX_DEFAULT = 'prot_';

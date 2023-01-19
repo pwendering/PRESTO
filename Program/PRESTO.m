@@ -21,7 +21,7 @@ function [solution,models,relError,changeTab,LP] = PRESTO(varargin)
 %   char enzRxnPfx:         (optional) prefix for enzyme usage pseudoreactions
 %                           (i.e. values in model.rxns); default: 'prot_'
 %   double epsilon:         (optional) allowed fold change of a k_cat value
-%                           default: 1e6
+%                           default: 1e5
 %   double theta:           (optional) allowed deviation of the predicted growth rate
 %                           from the given experimental value; default: 0.5
 %   double lambda:          (optional) weight for the deviation of
@@ -521,7 +521,7 @@ end
         % set default values
         ENZ_MET_PFX_DEFAULT = 'prot_';
         ENZ_RXN_pfx_DEFAULT = 'prot_';
-        EPSILON_DEFAULT = 1e6;
+        EPSILON_DEFAULT = 1e5;
         THETA_DEFAULT = 0.5;
         LAMBDA_DEFAULT = 1e-7;
         K_DEFAULT = 57500000; % Pyrococcus furiosus; 5.3.1.1; D-glyceraldehyde 3-phosphate
