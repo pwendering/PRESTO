@@ -42,6 +42,9 @@ function [relErr,errVar,sumDelta,objVal,avJD,corrKcatProts] = cvLambdaFitting(va
 %   double sigma:       (optional) average in vitro enzyme saturation
 %                       (can be fitted using GECKO sigmaFitter);
 %                       default: 0.5
+%   logical negCorrFlag:(optional) add second step that finds negative
+%                       corrections for kcat values;
+%                       default: false
 % Output:
 %   double relErr:      average relative error for each lambda in
 %                       lambdaParams across all cross-validations in each
@@ -60,6 +63,9 @@ function [relErr,errVar,sumDelta,objVal,avJD,corrKcatProts] = cvLambdaFitting(va
 %   cell corrKcatProts: unique set of corrected kcats over the CV folds per
 %                       iteration (dimension: |lambdaParams| x nIter)
 % 22.03.2022 Philipp Wendering, University of Potsdam, philipp.wendering@gmail.com
+% 10.12.2022 Philipp Wendering
+% * pass optional argument that allows for introdition of negative deltas
+%   to the PRESTO function
 
 % parse and check input arguments and set required variables
 p = parseInput(varargin);
@@ -82,6 +88,7 @@ K = p.Results.K;
 GAM = ones(1,size(E,2)).*p.Results.GAM;
 f = p.Results.f;
 sigma = p.Results.sigma;
+negCorrFlag = p.Results.negCorrFlag;
 
 % check dimensions of condition-specific variables
 if all([numel(expGrowth) numel(pTot)]==size(E,2))
@@ -150,7 +157,7 @@ for l=1:numel(lambdaParams)
                     [solution,tmpModels,~,~,LP] = PRESTO(models,expGrowth(trainIdx),E(:,trainIdx),...
                         'epsilon',epsilon,'lambda',lambdaParams(l),'theta',theta,...
                         'K',K,'enzBlackList',enzBlackList,'enzMetPfx',enzMetPfx,...
-                        'enzRxnPfx',enzRxnPfx);
+                        'enzRxnPfx',enzRxnPfx,'negCorrFlag',negCorrFlag);
                 catch ME
                     log = [log ME.stack(1).name ME.message];
                 end
@@ -225,7 +232,8 @@ for l=1:numel(lambdaParams)
                     [solution,tmpModels,~,~,LP] = PRESTO(models,expGrowth(trainIdx),E(:,trainIdx),...
                         'epsilon',epsilon,'lambda',lambdaParams(l),'theta',theta,...
                         'K',K,'enzBlackList',enzBlackList,'enzMetPfx',enzMetPfx,...
-                        'enzRxnPfx',enzRxnPfx);
+                        'enzRxnPfx',enzRxnPfx,'negCorrFlag',negCorrFlag);
+
                 catch ME
                     if contains(ME.message,'Dual optimality')
                         fprintf([repmat('\b',1,length('OPTIMAL')+1) 'INFEASIBLE: Error: '...
@@ -321,6 +329,7 @@ end
         ITER_DEFAULT = 10;
         F_DEFAULT = 0.5;
         SIGMA_DEFAULT = 0.5;
+        NEG_CORR_F_DEFAULT = false;
         
         % validation for scalar integer inputs
         validScalarDouble = @(v)~ischar(v)&isscalar(v);
@@ -349,6 +358,7 @@ end
         addOptional(p,'GAM',GAM_DEFAULT,@isnumeric)
         addOptional(p,'f',F_DEFAULT,@isnumeric)
         addOptional(p,'sigma',SIGMA_DEFAULT,@isnumeric)
+        addOptional(p,'negCorrFlag',NEG_CORR_F_DEFAULT,@islogical)
         
         parse(p,arguments{:})
     end
