@@ -26,85 +26,39 @@ switch org_name
     case 'saccharomyces cerevisiae'
         configuration_yeast
         condNames=readChenetal(topDir, [], true);
-        %set label for pfba dataset used for comparison 
+        %set label for pfba dataset used for comparison
         pfbalab='Chen';
         %Create alternative cond_name prefixes according to carbon source
-        altcondNames=repelem({'GLUC_'}, length(condNames));
-        altcondNames(contains(condNames,{'EtOH', 'Etoh'}))={'ETOH_'};
-        altcondNames(contains(condNames,{'Gln'}))={'GLUC+GLN_'};
-        altcondNames(contains(condNames,{'Phe'}))={'GLUC+PHE_'};
-        altcondNames(contains(condNames,{'Ile'}))={'GLUC+ILE_'};
-        altcondNames=strcat(altcondNames', condNames');
+        altcondNames=strrep(condNames, 'Yu2021', 'Y21');
+        altcondNames=strrep(altcondNames, 'Yu2020', 'Y20');
+        altcondNames=strrep(altcondNames, 'Lahtvee2017', 'L');
+        altcondNames=strrep(altcondNames, 'DiBartolomeo2020', 'D');
+        maxmin_relE={};
+        maxmin_predE={};
     case 'escherichia coli'
         configuration_ecoli
         condNames=readDavidi2016([],topDir);
-        %set lebel for pfba dataset used for comparison 
-        pfbalab='Davidi';
-        %Create alternative cond Names based on publication
-        altcondNames=cell(1, length(condNames));
+        %Put the study abbrevation at the beginning of the strind
+        altcondNames=cell(1,length(condNames));
+
         for i=1:length(condNames)
             tmpSplit=strsplit(condNames{i}, '_');
-            switch(tmpSplit{end})
-                case 'V'
-                    altcondNames{i}='Valgepea2013_';
-                case 'S'
-                    altcondNames{i}='Schmidt2015_';
-                case 'P'
-                    altcondNames{i}='Peebo2015_';
-            end
+            altcondNames{i}=strjoin([tmpSplit(end), tmpSplit(1:(end-1))], '_');
         end
-        altcondNames=strcat(altcondNames', condNames');
+        %set lebel for pfba dataset used for comparison
+        pfbalab='Davidi';
+        %For now just load model with minimzed kcats in second step
+        maxmin_mod=readGKOmodel(fullfile('Data', 'model_max_min_deltas.mat'));
+        maxmin_batch_models=addGKOconstrains(maxmin_mod, org_name);
+        %calculate performacnce for these models
+        [maxmin_relE, ~, maxmin_predE] = comp_condmod(maxmin_batch_models, org_name, false, prot_cor);
 end
 
-%import the sigma values used in GECKO models to set equal constrains
-[loginf, ~]= getloginf(gkologFile, org_name);
-if length(loginf.condNames)~=length(condNames)
-    error("GECKO model creation log does not contain model for each condition. Matchin of sigma values impossible")
-elseif length(models)~=length(condNames)
-    error("Number of models does not match number of conditions. Matching of Sigma ismpossible")
-end
-%order GECKO model creation logfile according to conditions
-[match, idx]=ismember(condNames, loginf.condNames);
-if any(~match, 'all')
-    error("Conditions in GECKO model creation log does not match experimental conditions")
-end
-loginf=loginf(idx,:);
-
-
-%convert modeld to batch models
-cd([geckoDir, '/geckomat/limit_proteins'])
-
-batch_models=cell(1,length(models));
-%get the amount of protein mass accounted for 
-%by enzymes in the model
-[f,~] = measureAbundance(models{1}.enzymes);
-disp(['Fraction of model enzymes in total protein content (f) = ', string(f)])
-%build initial model
-load('../../databases/parameters.mat')
-%check if COBRA toolbox is setup correctly
-if ~strcmp(parameters.org_name, org_name)
-    error(['matlab toolbox is not configured for organism ' org_name])
-end
-parameters.sigma=loginf.Sigma(1);
-models{1}.MWs=models{1}.protMW/1000; %GECKO uses kg per mol 
-batch_models{1}= constrainEnzymes(models{1}, f, true, [], sumProtein(models{1}));
-batch_models{1}.csense=repmat('E', length(batch_models{1}.mets),1);
-
-% restore default sigma
-load('../../databases/parameters.mat')
-parameters.sigma=0.5;
-save('../../databases/parameters.mat', 'parameters')
-
-
-%Adapt Biomass and protein pool constrain for all other conditions
-for i=2:length(models)
-    batch_models{i}=scaleBioMass(batch_models{1}, sumProtein(models{i}), GAM(i));
-    batch_models{i}.ub(end)=f*loginf.Sigma(i)*sumProtein(models{i});
-end
-cd(topDir)
+batch_models=addGKOconstrains(models, org_name);
 %since PRESTO models contain only one set of kcat adaptions only test
 %differenc conditions
-[relE, Mu]=comp_condmod(batch_models, org_name, false, prot_cor);
+[relE, Mu, predE, fluxvar]=comp_condmod(batch_models, org_name, false, prot_cor);
+
 
 if ~isempty(figprefix)
     %add figure prefix to file 
@@ -116,12 +70,15 @@ if ~isempty(figprefix)
     end
     
     %get gekco model perfomance for comparison
-[gkorelE, ~, maxgkorelE, ~, max_gkomod]=comp_GKOcondmod(fullfile(geckoDir, 'models'), gkologFile, org_name, prot_cor);
+[gkorelE, ~, gkopredE, kcat_overlap, maxgkorelE, ~, maxgkopredE, maxgkofluxvar, max_gkomod]=comp_GKOcondmod(fullfile(geckoDir, 'models'), gkologFile, org_name, prot_cor);
 
 %generate result path
 if ~isdir(fullfile(topDir, 'Results', 'relE'))
     mkdir(fullfile(topDir, 'Results', 'relE'))
 end
+
+%save environment
+save(fullfile(topDir, 'Results', 'relE', [figprefix '_env.mat']))
 %Generate a report table of the errors witout protein pool constrain
 %(Support Table S1)
 gko_mean=mean(gkorelE{4}, 2);
@@ -138,15 +95,24 @@ writetable(nopool_relEtab, fullfile('Results', 'relE', [figprefix, 'nopool_relE.
 %manual modifications, GECKO and PRESTO and save a table with the actual
 %corrected values of PRESTO and GECKO (Supplementary Table S2,3)
 kcat_comptab=comp_kcat2(models{1}, max_gkomod, 'Protein',figprefix);
-%plot for no uptake and proteomics constrains for bestmod
-%for all
+
 
 %% rel Error all GECKO and PRESTO (Figure 2 among others)
-plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), condNames, figprefix, topDir)
-%same plots with alternative condNames (Figure 4 among others
-plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), altcondNames, [figprefix '_alt'], topDir)
+%Use shortened condition names for plot labels
+plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), altcondNames, figprefix, topDir)
+%plot figure of spearman correlation between measured and corrected 
+plotFIGpredE(predE, gkopredE, altcondNames, figprefix, topDir)
+if ~isempty(maxmin_relE)
+    %plot a supplementary plot with the min model performance
+    plotFIGrelE(relE([1 2 3 5]), gkorelE([1 2 3 5]), altcondNames, [figprefix '_maxmin'], topDir, maxmin_relE([1 2 3 5]))
+    %plot figure of spearman correlation between measured and corrected 
+    plotFIGpredE(predE, gkopredE, altcondNames, figprefix, topDir, maxmin_predE)
+end
 %plot relative Error of 
 plotFIGrelE3(relE(1:3), maxgkorelE(1:3), pFBArelE(1:3), [figprefix '_pFBAscat'], topDir, pfbalab);
 
+plotFIGvrange(fluxvar, maxgkofluxvar, batch_models{1}, enzRxnPfx, altcondNames, figprefix, topDir)
+%plot a heatmap of kcat corrections
+plotFIGKcatOvlp(kcat_overlap, altcondNames, figprefix,  topDir)
 end
 end

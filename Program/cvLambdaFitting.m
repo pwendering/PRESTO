@@ -15,14 +15,14 @@ function [relErr,errVar,sumDelta,objVal,avJD,corrKcatProts] = cvLambdaFitting(va
 %                       default: 3
 %   double nIter:       (optional) number of iterations for cross-valiation;
 %                       default: 10
-%   logical randomize:  (optional) whether sets should be chosen at random
-%                       or consecutively into groups of size setSize
 %   double epsilon:     (optional) maximum fold change of kcats
-%                       (default: 1e6)
+%                       (default: 1e5)
 %   double theta:       (optional) allowed deviation of the predicted growth rate
 %                       from the given experimental value; default: 0.5
 %   char enzMetPfx:     (optional) prefix for enzyme mass balance constraints
 %                       (i.e. values in model.metNames);default: 'prot_'
+%   char enzRxnPfx:     (optional) prefix for enzyme usage pseudoreactions
+%                       (i.e. values in model.rxns); default: 'prot_'
 %   cellstr enzBlackList:(optional) names of enzyme metabolites that
 %                       should be excluded from the correction
 %                       default: {''}
@@ -40,6 +40,9 @@ function [relErr,errVar,sumDelta,objVal,avJD,corrKcatProts] = cvLambdaFitting(va
 %   double sigma:       (optional) average in vitro enzyme saturation
 %                       (can be fitted using GECKO sigmaFitter);
 %                       default: 0.5
+%   logical negCorrFlag:(optional) add second step that finds negative
+%                       corrections for kcat values;
+%                       default: false
 % Output:
 %   double relErr:      average relative error for each lambda in
 %                       lambdaParams across all cross-validations in each
@@ -58,6 +61,9 @@ function [relErr,errVar,sumDelta,objVal,avJD,corrKcatProts] = cvLambdaFitting(va
 %   cell corrKcatProts: unique set of corrected kcats over the CV folds per
 %                       iteration (dimension: |lambdaParams| x nIter)
 % 22.03.2022 Philipp Wendering, University of Potsdam, philipp.wendering@gmail.com
+% 10.12.2022 Philipp Wendering
+% * pass optional argument that allows for introdition of negative deltas
+%   to the PRESTO function
 
 % parse and check input arguments and set required variables
 p = parseInput(varargin);
@@ -73,12 +79,14 @@ nIter = p.Results.nIter;
 epsilon = p.Results.epsilon;
 theta = p.Results.theta;
 enzMetPfx = p.Results.enzMetPfx;
+enzRxnPfx = p.Results.enzRxnPfx;
 enzBlackList = p.Results.enzBlackList;
 runParallel = p.Results.runParallel;
 K = p.Results.K;
 GAM = ones(1,size(E,2)).*p.Results.GAM;
 f = p.Results.f;
 sigma = p.Results.sigma;
+negCorrFlag = p.Results.negCorrFlag;
 
 % check dimensions of condition-specific variables
 if all([numel(expGrowth) numel(pTot)]==size(E,2))
@@ -146,7 +154,8 @@ for l=1:numel(lambdaParams)
                 try
                     [solution,tmpModels,~,~,LP] = PRESTO(models,expGrowth(trainIdx),E(:,trainIdx),...
                         'epsilon',epsilon,'lambda',lambdaParams(l),'theta',theta,...
-                        'K',K,'enzBlackList',enzBlackList);
+                        'K',K,'enzBlackList',enzBlackList,'enzMetPfx',enzMetPfx,...
+                        'enzRxnPfx',enzRxnPfx,'negCorrFlag',negCorrFlag);
                 catch ME
                     log = [log ME.stack(1).name ME.message];
                 end
@@ -220,7 +229,9 @@ for l=1:numel(lambdaParams)
                 try
                     [solution,tmpModels,~,~,LP] = PRESTO(models,expGrowth(trainIdx),E(:,trainIdx),...
                         'epsilon',epsilon,'lambda',lambdaParams(l),'theta',theta,...
-                        'K',K,'enzBlackList',enzBlackList);
+                        'K',K,'enzBlackList',enzBlackList,'enzMetPfx',enzMetPfx,...
+                        'enzRxnPfx',enzRxnPfx,'negCorrFlag',negCorrFlag);
+
                 catch ME
                     if contains(ME.message,'Dual optimality')
                         fprintf([repmat('\b',1,length('OPTIMAL')+1) 'INFEASIBLE: Error: '...
@@ -305,9 +316,10 @@ end
     function p = parseInput(arguments)
         % define default variables
         FOLD_DEFAULT = 3;
-        EPSILON_DEFAULT = 1e6;
+        EPSILON_DEFAULT = 1e5;
         THETA_DEFAULT = 0.5;
         ENZ_MET_PFX_DEFAULT = 'prot_';
+        ENZ_RXN_PFX_DEFAULT = 'prot_';
         NUTR_UPT_DEFAULT = table({''},'RowNames',{'empty'});
         PAR_DEFAULT = false;
         K_DEFAULT = 57500000; % Pyrococcus furiosus; 5.3.1.1; D-glyceraldehyde 3-phosphate
@@ -315,15 +327,18 @@ end
         ITER_DEFAULT = 10;
         F_DEFAULT = 0.5;
         SIGMA_DEFAULT = 0.5;
+        NEG_CORR_F_DEFAULT = false;
         
         % validation for scalar integer inputs
         validScalarDouble = @(v)~ischar(v)&isscalar(v);
         validScalarInt = @(v)validScalarDouble(v)&(floor(v)==ceil(v));
+        validateModel = @(m)isstruct(m)&isfield(m,'protMW');
+        
         % parse input argument array
         p = inputParser;
         p.FunctionName = 'findBestPerformingSetsByCV';
         
-        addRequired(p,'model',@isstruct)
+        addRequired(p,'model',validateModel)
         addRequired(p,'expGrowth',@isnumeric)
         addRequired(p,'pTot',@isnumeric)
         addRequired(p,'E',@isnumeric)
@@ -334,12 +349,14 @@ end
         addOptional(p,'epsilon',EPSILON_DEFAULT,validScalarDouble)
         addOptional(p,'theta',THETA_DEFAULT,validScalarDouble)
         addOptional(p,'enzMetPfx',ENZ_MET_PFX_DEFAULT,@ischar)
+        addOptional(p,'enzRxnPfx',ENZ_RXN_PFX_DEFAULT,@ischar)
         addOptional(p,'enzBlackList',{''},@iscellstr)
         addOptional(p,'runParallel',PAR_DEFAULT,@islogical)
         addOptional(p,'K',K_DEFAULT,validScalarDouble)
         addOptional(p,'GAM',GAM_DEFAULT,@isnumeric)
         addOptional(p,'f',F_DEFAULT,@isnumeric)
         addOptional(p,'sigma',SIGMA_DEFAULT,@isnumeric)
+        addOptional(p,'negCorrFlag',NEG_CORR_F_DEFAULT,@islogical)
         
         parse(p,arguments{:})
     end

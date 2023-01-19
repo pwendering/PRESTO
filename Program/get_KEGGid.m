@@ -13,40 +13,73 @@ function KegginfTable=get_KEGGid(pIds, org_abbrev)
 
 keggId = cell(0,1);
 GnResponse = cell(0,1);
-baseURL = 'https://www.uniprot.org';
-tool = 'uploadlists';
+URL = 'https://rest.uniprot.org/idmapping/run';
 
-% divide gene names into chunks of 500
-startIdx = 1:100:numel(pIds);
+% divide gene names into chunks
+chunk_size = 100;
+startIdx = 1:chunk_size:numel(pIds);
 for i=1:numel(startIdx)
     if i<numel(startIdx)
-        endIdx = startIdx(i)+99;
+        endIdx = startIdx(i)+(chunk_size-1);
     else
         endIdx = numel(pIds);
     end
     fprintf('Processing IDs %d to %d ...\n',startIdx(i),endIdx)
     tmpIdx = startIdx(i):endIdx;
     tmpGnQuery = pIds(tmpIdx);
-    url = [baseURL '/' tool '/',...
-        '?query=', strjoin(tmpGnQuery,','),...
-        '&format=tab',...
-        '&from=ACC',...
-        '&to=KEGG_ID'...
-        '&columns=id,organism'...
-        ];
-    % send request
-    data = webread(url);
-    % process output from webread to cell array with an entry for each
-    % row
-    rows = strsplit(strtrim(data),'\n');
-    rows = cellfun(@strsplit,rows(2:end),'un', 0);
+    
+    curl_cmd_jobid = ['curl -k --silent --request POST ' URL ' ',...
+        '--form ids="', strjoin(tmpGnQuery,',') '" ',...
+        '--form from="UniProtKB_AC-ID" ',...
+        '--form to="KEGG"'];
+    % send requestto retrieve job ID
+    status = 1;
+    trials = 0;
+    while status ~= 0 && trials < 3
+        trials = trials + 1;
+        [status, job_id_json] = system(curl_cmd_jobid);
+    end
+    
+    if status ~= 0
+        error('Request not successful after %i attempts', trials)
+    else
+        job_id = jsondecode(job_id_json).jobId;
+    end
+    
+    % wait until job is finished
+    job_status = '';
+    curl_cmd_jobstatus = ['curl -k --silent https://rest.uniprot.org/idmapping/status/' ...
+        job_id];
+    tic
+    t = 0;
+    while ~isequal(job_status, 'FINISHED') && t < 120
+        t = toc;
+        [status, job_status_json] = system(curl_cmd_jobstatus);
+        if status == 0
+            job_status = jsondecode(job_status_json).jobStatus;
+        end
+    end
+            
+    % get job results
+    curl_cmd_jobresult = ['curl -k --silent https://rest.uniprot.org/idmapping/stream/' ...
+        job_id];
+    [status, job_result_json] = system(curl_cmd_jobresult);
+    if status == 0
+        job_result_struct = jsondecode(job_result_json).results;
+        job_result_table = struct2table(job_result_struct);
+    else
+        error('Job results could not be fetched')
+    end
+    
     % filter out non-organism specific hits
-    rows = rows(cellfun(@(x)contains(x(2),[org_abbrev ':']),rows));
+    keep_idx = cellfun(@(x)startsWith(x, [org_abbrev ':']), job_result_table.to);
+    job_result_table = job_result_table(keep_idx, :);
     % extract gene names to match with input gene names for the case
     % that not all IDs were matched
-    GnResponse = [GnResponse; regexprep(cellfun(@(x)x(1),rows),'^\w+:','')'];
-    keggId = [keggId;cellfun(@(x)x(2),rows)'];
+    GnResponse = [GnResponse; regexprep(job_result_table.from,'^\w+:','')];
+    keggId = [keggId; job_result_table.to];
 end
+
 if length(GnResponse)<length(pIds)
     warning(['Not all gene names could be matched: ', strjoin(pIds(~ismember(pIds, GnResponse)), ', '), ...
         ' were not found in KEGG database'])

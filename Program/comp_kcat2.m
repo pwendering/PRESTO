@@ -64,6 +64,9 @@ gkoreportTable.Properties.VariableNames(1:2)={'Protein', 'Reaction#'};
  %get PRESTO kcat modifications
  basic_model=readGKOmodel(modelFile);
  [~,~,~,reportTable] = findKcatCorrections(basic_model, prst_mod, enzMetPfx);
+ %plot info on kcat adjustments dependen on kcat source
+ get_kcatori(reportTable, basic_model, fullfile(resdir, figprefix))
+ 
 % convert reaction and protein ids to strings
 reportTable.("PROTEIN ID")=string(table2array(reportTable(:, 'PROTEIN ID')));
 reportTable.("REACTION ID")=string(table2array(reportTable(:, 'REACTION ID')));
@@ -116,7 +119,15 @@ if exist('figprefix', 'var')
 %export results
 writetable(overvTable, fullfile(resdir, [figprefix, '_', by, 'kcattab.tsv']), 'FileType', 'text', 'Delimiter', '\t')
 writetable(kcat_tab, fullfile(resdir, [figprefix, '_', by,'kcattabvalues.tsv']), 'FileType', 'text', 'Delimiter', '\t')
-
+%Export names and Inforamtion on the proteins in the overlap of PRESTO and
+%GECKO
+PRTGKOovTable=KegginfTable(ismember(string(KegginfTable.UniprotID), table2array(overvTable(all(table2array(overvTable(:,3:end)), 2),1))),:);
+PRTGKOovTable.Protein_Name=get_Pnames(PRTGKOovTable.UniprotID)';
+PRTGKOovTable=PRTGKOovTable(:, [1, size(PRTGKOovTable, 2), 2:(size(PRTGKOovTable, 2)-1)]);
+writetable(PRTGKOovTable, fullfile(resdir, [figprefix, '_', by,'PRTGKOovinfo.tsv']), 'FileType', 'text', 'Delimiter', '\t')
+if size(PRTGKOovTable, 1)>5
+    PWenrich(KegginfTable, PRTGKOovTable.UniprotID, fullfile(resdir, [figprefix '_ov_']))
+end
 %% plot log plot
 plot_x=reportTable.("KCAT UPDATED [s^-1]")(ismember(reportTable(:,col_idx),...
     overvTable(overvTable.GECKO_Modifications & overvTable.PRESTO_Modifications, col_idx)));
@@ -131,6 +142,8 @@ text(min(plot_x)+0.5, max(plot_y)-0.5, {['Spearman \rho: ', num2str(round(rho, 3
     ['p-value: ', num2str(round(pval, 3, 'significant'))]})
 xlabel('kcat PRESTO [s^{-1}]')
 ylabel('kcat GECKO [s^{-1}]')
+set(gcf, 'PaperUnits', 'inches');
+set(gcf, 'PaperPosition', [0 0 3.5 2.5]);
 saveas(gcf, fullfile(resdir, [figprefix, 'kcatcomp.svg']))
 
 % %% Compare with davidi data

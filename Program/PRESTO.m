@@ -21,7 +21,7 @@ function [solution,models,relError,changeTab,LP] = PRESTO(varargin)
 %   char enzRxnPfx:         (optional) prefix for enzyme usage pseudoreactions
 %                           (i.e. values in model.rxns); default: 'prot_'
 %   double epsilon:         (optional) allowed fold change of a k_cat value
-%                           default: 1e6
+%                           default: 1e5
 %   double theta:           (optional) allowed deviation of the predicted growth rate
 %                           from the given experimental value; default: 0.5
 %   double lambda:          (optional) weight for the deviation of
@@ -48,6 +48,9 @@ function [solution,models,relError,changeTab,LP] = PRESTO(varargin)
 %                           to increase the enzyme abundances (to avoid
 %                           very low f factors when enzyme pool is used)
 %                           default: all equal to one
+%   logical negCorrFlag:    (optional) add second step that finds negative
+%                           corrections for kcat values;
+%                           default: false
 % Output:
 %   struct solution:        solution to the linear program as returned by
 %                           solveCobraLP
@@ -61,7 +64,16 @@ function [solution,models,relError,changeTab,LP] = PRESTO(varargin)
 %                           obtain corrected kcat values
 % 
 % 22.03.2022 Philipp Wendering, University of Potsdam, philipp.wendering@gmail.com
-
+% 09.12.2022 Philipp Wendering
+% * added option for negative adjustments (i.e. decrease of kcat values) in
+%   a second optimization step with fixed positive corrections and a lower
+%   bound on the sum of relative errors; the minimum possible kcat after
+%   the second correction step is the minimum kcat seen in the model before
+%   applying any correction
+% * fixed error with dealing with unmeasured proteins by changing into
+%   organism-specific GECKO directory before calling 'sumProtein'
+% * changed FOLD_INCREASE to FOLD_CHANGE in reporting table and added
+%   DELTA_LB columns for delta lower bounds
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Parse input ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
 p = parseInput(varargin);
 
@@ -79,6 +91,7 @@ includeUM = p.Results.includeUM;
 f_n = ones(size(E,2),1).*p.Results.f_n;
 sigma = p.Results.sigma;
 pCorrFactor = p.Results.pCorrFactor;
+negCorrFlag = p.Results.negCorrFlag;
 
 if includeUM && ~isfield(models{1},'protMW')
     error('The provided models lack a field ''protMW'' for the inclusion of unmeasured proteins')
@@ -128,6 +141,9 @@ if includeUM
     
     % set initial abundances for each enzyme by uniformly distributing the
     % remaining protein mass
+    currDir = pwd;
+    geckoPath = regexp(which('sumProtein'), '.*GECKO_[^\\]+', 'match');
+    cd(fullfile(char(geckoPath), 'geckomat', 'limit_proteins'))
     pTot = cellfun(@(M)sumProtein(M),models)';
     pRemain = pTot-sum(bsxfun(@times,E,MW))';
     f = zeros(size(E,2),1);
@@ -143,6 +159,7 @@ if includeUM
     
     % again multiply E by protein abundance correction factor
     E = (pCorrFactor.*E')';
+    cd(currDir)
 else
     % find enzymes for which there are no abundances available in at least one
     % condition
@@ -165,6 +182,7 @@ clear model tmpSense
 % LP objective (minimize deltas)
 deltaColStartIdx = NCOND*nBiochemRxns+1;
 lpObj = zeros(size(lpMatrix,2),1);
+
 % weigh deltas by lambda, divided by the number of kcats that can be corrected
 lpObj(deltaColStartIdx:end) =  lambda / (sum(any(E,2)) - sum(blackListIdx));
 
@@ -216,15 +234,19 @@ clear rowIdx colIdx enzKcatIdx tmpSMat tmpDeltaMat tmpModel tmpRHS
 
 % lower bounds
 lpLB = cellfun(@(M)M.lb(1:nBiochemRxns)',models,'UniformOutput',false);
-lpLB = [[lpLB{:}]'; zeros(numel(enzRxnIdx),1)];
+deltaLB = zeros(NDELTA,1);
+lpLB = [[lpLB{:}]'; deltaLB];
+
 % upper bounds
 lpUB = cellfun(@(M)M.ub(1:nBiochemRxns)',models,'UniformOutput',false);
-deltaUB = min((epsilon-1)*minKcat,K-minKcat); % minimum of allowed fold-change and cap values
+% minimum of allowed fold-change and cap value
+deltaUB = min((epsilon-1)*minKcat,K-minKcat);
 % set deltas for blacklist enzymes and unmeasured enzymes to zero
 deltaUB(blackListIdx) = 0;
 deltaUB(idxExclude) = 0;
+
 lpUB = [[lpUB{:}]'; deltaUB];
-clear deltaCapValue
+
 % construct omega constraints
 omega = sparse(2*NCOND,size(lpMatrix,2)+NCOND);
 for i=1:2:2*NCOND
@@ -281,6 +303,7 @@ LP.lb = [lpLB; zeros(NCOND,1); rhoLB];
 LP.ub = [lpUB; theta.*ones(NCOND,1); rhoUB];
 LP.csense = [lpSense; repmat('L',2*NCOND,1); rhoSumSense];
 LP.c = [lpObj; ones(NCOND,1) / numel(models); rhoObj];
+
 LP.osenseStr = 'min';
 clear lpMatrix lpRHS lpLB lpUB lpObj omega rhoMatFull rhoLB rhoUB rhoObj ...
     rhoSumConst rhoSumRHS rhoSumSense
@@ -324,17 +347,84 @@ clear rxnCondNrStr metCondNrStr
 % solve the LP
 solution = optimizeCbModel(LP);
 
+if negCorrFlag
+    
+    LP_min = LP;
+    
+    % fix non-zero deltas and test feasibility
+    deltaIdx = deltaColStartIdx:deltaColStartIdx+NDELTA-1;
+    deltaVal = solution.x(deltaIdx);
+    nzDeltaIdx = deltaVal~=0;
+    feasTol = getCobraSolverParams('LP', 'feasTol');
+    LP_min.lb(deltaIdx(nzDeltaIdx)) = deltaVal(nzDeltaIdx) - feasTol;
+    LP_min.ub(deltaIdx(nzDeltaIdx)) = deltaVal(nzDeltaIdx) + feasTol;
+    
+    % fix uptake fluxes
+    exc_idx = startsWith(LP.rxns, 'EX_');
+    if sum(exc_idx) == 0
+        warning('Step 2: No exchange reactions found that could be fixed.')
+    end
+    LP_min.lb(exc_idx) = solution.x(exc_idx) - 1e-6;
+    LP_min.ub(exc_idx) = solution.x(exc_idx) + 1e-6;
+    
+    % set upper bound for sum of relative errors
+    omegaIdx = startsWith(LP_min.rxns, 'omega_cond_');
+    omegaSumRow = sparse(1, size(LP_min,2));
+    omegaSumRow(omegaIdx) = 1;
+    omegaSumRHS = sum(solution.x(omegaIdx)) + feasTol;
+    omegaSumSense = 'L';
+    LP_min.S = [LP_min.S; omegaSumRow];
+    LP_min.b = [LP_min.b; omegaSumRHS];
+    LP_min.csense = [LP_min.csense; omegaSumSense];
+    LP_min.mets = [LP_min.mets; 'sum_omega_constraint'];
+    LP_min.metNames = [LP_min.metNames; 'sum_omega_constraint'];
+    
+    % allow only for negative deltas if not changed in first step
+    deltaLB = max((1/epsilon-1)*minKcat,min(minKcat)-minKcat);
+    deltaLB(blackListIdx) = 0;
+    deltaLB(idxExclude) = 0;
+    
+    % also exclude deltas for reactions that are inactive across all
+    % conditions
+    idxAllZeroFlux = false(NDELTA, 1);
+    for i = 1:NDELTA
+        % find reactions associated to current delta
+        protID = erase(LP.rxns(deltaIdx(i)), 'delta_');
+        rxnIDs = models{1}.rxns(models{1}.S(findMetIDs(models{1},protID),:)<0);
+        rxnIdx = arrayfun(@(i)i+nBiochemRxns*(0:NCOND-1),...
+            findRxnIDs(models{1}, rxnIDs), 'UniformOutput', false);
+        rxnIdx = [rxnIdx{:}];
+        idxAllZeroFlux(i) = ~any(solution.x(rxnIdx));
+    end
+    deltaLB(idxAllZeroFlux) = 0;
+    
+    LP_min.lb(deltaIdx(~nzDeltaIdx)) = deltaLB(~nzDeltaIdx);
+    LP_min.ub(deltaIdx(~nzDeltaIdx)) = zeros(sum(~nzDeltaIdx),1);
+    
+    % also update delta lower bounds in LP that will be returned by the
+    % function
+    LP.lb(deltaIdx(~nzDeltaIdx)) = deltaLB(~nzDeltaIdx);
+    
+    % minimize the sum of allowed deltas
+    LP_min.c(deltaIdx) = 0;
+    LP_min.c(deltaIdx(~nzDeltaIdx)) = lambda / (sum(any(E,2)) - sum(blackListIdx) - sum(nzDeltaIdx));
+    
+    solution_min = optimizeCbModel(LP_min);
+    
+    solution = solution_min;
+end
+
 if solution.stat == 1
     % get delta values
     deltaVal = solution.x(deltaColStartIdx:deltaColStartIdx+NDELTA-1);
     % find indices of enzymes with corrected kcats
-    enzMetChangedIdx = find(deltaVal>0);
+    enzMetChangedIdx = find(deltaVal~=0);
     % reduce delta values to non-zero values
     deltaVal(deltaVal==0) = [];
     enzMetNames = regexprep(LP.metNames(enzMetIdx(enzMetChangedIdx)),' - condition \d+','');
-    changeTab = cell2table(repmat({'',0,0,0,0,0,true},numel(enzMetChangedIdx),1),'VariableNames',...
+    changeTab = cell2table(repmat({'',0,0,0,0,0,0,true},numel(enzMetChangedIdx),1),'VariableNames',...
         {'ENZYME_MET_NAME','KCAT_ORIG [s^-1]','KCAT_UPDATED [s^-1]',...
-        'FOLD_INCREASE','DELTA','DELTA_UB', 'MEASURED'});
+        'FOLD_CHANGE','DELTA','DELTA_LB','DELTA_UB', 'MEASURED'});
     for i=1:numel(enzMetChangedIdx)
         % calculate updated kcat value
         updtKcat = minKcat(enzMetChangedIdx(i))+deltaVal(i);
@@ -344,8 +434,9 @@ if solution.stat == 1
         changeTab.(3)(i) = updtKcat/3600;
         changeTab.(4)(i) = updtKcat/minKcat(enzMetChangedIdx(i));
         changeTab.(5)(i) = deltaVal(i)/3600;
-        changeTab.(6)(i) = deltaUB(enzMetChangedIdx(i))/3600;
-        changeTab.(7)(i) = true;
+        changeTab.(6)(i) = deltaLB(enzMetChangedIdx(i))/3600;
+        changeTab.(7)(i) = deltaUB(enzMetChangedIdx(i))/3600;
+        changeTab.(8)(i) = true;
     end
     
     if includeUM
@@ -430,14 +521,15 @@ end
         % set default values
         ENZ_MET_PFX_DEFAULT = 'prot_';
         ENZ_RXN_pfx_DEFAULT = 'prot_';
-        EPSILON_DEFAULT = 1e6;
+        EPSILON_DEFAULT = 1e5;
         THETA_DEFAULT = 0.5;
         LAMBDA_DEFAULT = 1e-7;
         K_DEFAULT = 57500000; % Pyrococcus furiosus; 5.3.1.1; D-glyceraldehyde 3-phosphate
         INCL_UM_DEFAULT = false;
         F_N_DEFAULT = 0.5;
         SIGMA_DEFAULT = 0.5;
-
+        NEG_CORR_F_DEFAULT = false;
+        
         % validation functions
         validateModel = @(M) iscell(M)||isstruct(M);
         validScalarDouble = @(v)~ischar(v)&isscalar(v);
@@ -459,6 +551,7 @@ end
         addParameter(p,'f_n',F_N_DEFAULT,@isnumeric)
         addParameter(p,'sigma',SIGMA_DEFAULT,validScalarDouble)
         addParameter(p,'pCorrFactor',1,@isnumeric)
+        addParameter(p,'negCorrFlag',NEG_CORR_F_DEFAULT,@islogical)
         
         parse(p,arguments{:})
     end

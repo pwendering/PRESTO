@@ -25,7 +25,7 @@ protCorrFact = [1.8898,2.0621,1.6025,1.7599,1.3023,1.4009, 1.382,1.9242,...
     2.5238,3.5113,3.4852, 1.385,1.3633,2.2578,2.4316,3.2938,2.8668, 2.909,...
     2.191, 1.877,1.5624,2.2166,2.4049,1.9211,1.9156,2.4875,1.7164]';
 % define top-level directory
-topDir = pwd;
+topDir = char(regexp(pwd, '^.*PRESTO', 'match'));
 % solver for linear optimization
 cobraSolver = 'gurobi';
 % define log file name (defaults to current date and time)
@@ -61,10 +61,16 @@ catch
     error('COBRA toolbox is not installed')
 end
 
-% get maximum kcat value
+% add organism-specific GECKO functions to path
 geckoDir = fullfile(topDir, 'GECKO_S_cerevisiae');
+addpath(genpath(fullfile(geckoDir, 'geckomat')), '-begin')
+
+% get maximum kcat value
 maxKcatFile = fullfile(geckoDir, 'databases', 'max_KCAT.txt');
 K = retrieveMaxKcat(maxKcatFile,orgName);
 clear maxKcatFile
+
+% model and data files
 modelFile = fullfile(geckoDir, 'models', 'ecYeast', 'rawecYeast.mat');
 batchModelFile = fullfile(geckoDir,  'models', 'ecYeast', 'rawecYeast_batch.mat');
+kcatoriginFile=fullfile(geckoDir, 'models', 'ecYeast', 'ecYeast_kcatOrigins.txt');
