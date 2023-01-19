@@ -31,7 +31,7 @@ end
 
 % initialize models
 models = cell(1,numel(P));
-geckoDir=char(regexp(which('getModelParameters'), ['.*(?=' filesep' 'geckomat)'], 'match'))
+geckoDir=char(regexp(which('getModelParameters'), ['.*(?=' filesep' 'geckomat)'], 'match'));
 if isempty(geckoDir)
     error('Organism-specific GECKO directory could not be located, please run configuration script')
 end

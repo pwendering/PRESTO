@@ -96,7 +96,7 @@ lambda = selectBestLambda(lambdaParams, relErr, sumsDelta);
 
 %% Run kcat correction with all conditions
 models = adjBaseModel(ecYeastGEM,P,nutrExch,GAM);
-[solution,corrModels,~,~,LP] = PRESTO(models,expVal,E,...
+[solution,corrModels,relError,~,LP] = PRESTO(models,expVal,E,...
     'epsilon',epsilon,'lambda',lambda,'theta',theta);
 
 % find kcat corrections
