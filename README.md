@@ -28,11 +28,11 @@
 1. create ecModel using the [GECKO toolbox](https://github.com/SysBioChalmers/GECKO)
 2. create input data files
 
-`protAbcFile`
+**protAbcFile**
 
 This file contains the measured protein abundances in mmol/gDW. Give the protein UniProt IDs as row labels in the first column and the measurements of all conditions in the subsequent columns with condition IDs as column headers in the first row.
 
-`growthDataFile`
+**growthDataFile**
 
 The first column of this file contains the IDs of exchange reactions, the second one contains the name or note associated with the ID, and the subsequent columns contain the measued growth rates [h<sup>-1</sup>] and exchange fluxes [mmol gDW<sup>-1</sup> h<sup>-1</sup>] for the same conditions as in `protAbcFile`.
 
@@ -45,25 +45,25 @@ Example:
 | ex_CO2      | CO2     | 3           | 4           | ... |
 | ...         | ...     | ...         | ...         | ... |
 
-`ptotFile`
+**ptotFile**
 
-This is a file has two columns. The first one contains the condition IDs and the second one contains the total protein content in g gDW<sup>-1</sub>. The first row contains column header.
+This is a file has two columns. The first one contains the condition IDs and the second one contains the total protein content in g gDW<sup>-1</sup>. The first row contains column header.
 
-`mwFile` (optional)
+**maxKcatFile**
+
+This file contains the reference k<sub>cat</sub> values and has five columns, which contain (1) EC number (2) substrate (3) lineage of the organism (4) k<sub>cat</sub>  [s<sup>-1</sup>] (5) "*" (see also GECKO/databases/max_KCAT.txt).
+
+**mwFile** (optional)
 
 This file contains the molecular weights of all proteins in the model. If the file name is empty, the file does not exist or the dimensions of the `protMW` model field and the `enzymes`field do not match, the file will be generated using the UniProt API.
 
-`modelFile`
+**modelFile**
 
 Give here the path to the ecModel generated using GECKO (without pool constaint).
 
-`batchModelFile`
+**batchModelFile**
 
 Path to the "batch model", which contains the protein pool constraint.
-
-`maxKcatFile`
-
-This file contains the reference k<sub>cat</sub> values and has five columns, which contain (1) EC number (2) substrate (3) lineage of the organism (4) k<sub>cat</sub>  [s<sup>-1</sup>] (5) "*" (see also GECKO/databases/max_KCAT.txt).
 
 3. make adjustments to parameters and input file names in the configuration script
 
