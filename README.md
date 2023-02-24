@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/476773410.svg)](https://zenodo.org/badge/latestdoi/476773410)
 # Correction of turnover numbers in enzyme-constraint metabolic models
 
 ## OS
