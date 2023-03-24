@@ -138,3 +138,4 @@ adj_models = adjBaseModel(...
 ```
 
 ## Reference
+Wendering, P., Arend, M., Razaghi-Moghadam, Z. et al. Data integration across conditions improves turnover number estimates and metabolic predictions. Nat Commun 14, 1485 (2023). https://doi.org/10.1038/s41467-023-37151-2
